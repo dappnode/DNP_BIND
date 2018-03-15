@@ -7,12 +7,12 @@ eth.    IN      SOA     eth. admin.eth. (
                         38400 )
 eth.    IN      NS      10.17.0.2
 
-my.bind.repo.dappnode         IN      A       10.17.0.2
-my.ethforward.repo.dappnode   IN      A       10.17.0.3
-my.vpn.repo.dappnode          IN      A       10.17.0.4
-my.ipfs.repo.dappnode         IN      A       10.17.0.5
-my.provisioning.repo.dappnode IN      A       10.17.0.6
-my.ethchain.repo.dappnode     IN      A       10.17.0.7
-my.installer.repo.dappnode    IN      A       10.17.0.8
+my.bind.dnp.dappnode         IN      A       10.17.0.2
+my.ethforward.dnp.dappnode   IN      A       10.17.0.3
+my.vpn.dnp.dappnode          IN      A       10.17.0.4
+my.ipfs.dnp.dappnode         IN      A       10.17.0.5
+my.provisioning.dnp.dappnode IN      A       10.17.0.6
+my.ethchain.dnp.dappnode     IN      A       10.17.0.7
+my.installer.dnp.dappnode    IN      A       10.17.0.8
 
 * IN A 10.17.0.3
