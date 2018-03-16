@@ -14,5 +14,6 @@ my.ipfs.dnp.dappnode         IN      A       10.17.0.5
 my.provisioning.dnp.dappnode IN      A       10.17.0.6
 my.ethchain.dnp.dappnode     IN      A       10.17.0.7
 my.installer.dnp.dappnode    IN      A       10.17.0.8
+my.wamp.dnp.dappnode         IN      A       10.17.0.9
 
 * IN A 10.17.0.3
