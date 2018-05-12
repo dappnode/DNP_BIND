@@ -11,9 +11,8 @@ my.bind.dnp.dappnode         IN      A       172.33.1.2
 my.ethforward.dnp.dappnode   IN      A       172.33.1.3
 my.vpn.dnp.dappnode          IN      A       172.33.1.4
 my.ipfs.dnp.dappnode         IN      A       172.33.1.5
-my.provisioning.dnp.dappnode IN      A       172.33.1.6
-my.ethchain.dnp.dappnode     IN      A       172.33.1.7
-my.installer.dnp.dappnode    IN      A       172.33.1.8
-my.wamp.dnp.dappnode         IN      A       172.33.1.9
+my.ethchain.dnp.dappnode     IN      A       172.33.1.6
+my.installer.dnp.dappnode    IN      A       172.33.1.7
+my.wamp.dnp.dappnode         IN      A       172.33.1.8
 
 * IN A 172.33.1.3
