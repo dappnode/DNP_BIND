@@ -76,13 +76,13 @@ eduadiez~ $ dig @localhost bind.dappnode.eth
 ;bind.dappnode.eth.		IN	A
 
 ;; ANSWER SECTION:
-bind.dappnode.eth.	38400	IN	A	10.17.0.2
+bind.dappnode.eth.	38400	IN	A	172.33.1.2
 
 ;; AUTHORITY SECTION:
-eth.			38400	IN	NS	10.17.0.2.eth.
+eth.			38400	IN	NS	172.33.1.2.eth.
 
 ;; ADDITIONAL SECTION:
-10.17.0.2.eth.		38400	IN	A	10.17.0.3
+172.33.1.2.eth.		38400	IN	A	172.33.1.3
 
 ;; Query time: 1 msec
 ;; SERVER: 127.0.0.1#53(127.0.0.1)
