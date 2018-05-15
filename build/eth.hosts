@@ -7,12 +7,14 @@ eth.    IN      SOA     eth. admin.eth. (
                         38400 )
 eth.    IN      NS      172.33.1.2
 
-my.bind.dnp.dappnode         IN      A       172.33.1.2
-my.ethforward.dnp.dappnode   IN      A       172.33.1.3
-my.vpn.dnp.dappnode          IN      A       172.33.1.4
-my.ipfs.dnp.dappnode         IN      A       172.33.1.5
-my.ethchain.dnp.dappnode     IN      A       172.33.1.6
-my.installer.dnp.dappnode    IN      A       172.33.1.7
-my.wamp.dnp.dappnode         IN      A       172.33.1.8
+my.bind.dnp.dappnode            IN      A       172.33.1.2
+my.ethforward.dnp.dappnode      IN      A       172.33.1.3
+my.vpn.dnp.dappnode             IN      A       172.33.1.4
+my.ipfs.dnp.dappnode            IN      A       172.33.1.5
+my.ethchain.dnp.dappnode        IN      A       172.33.1.6
+my.installer.dnp.dappnode       IN      A       172.33.1.7
+my.wamp.dnp.dappnode            IN      A       172.33.1.8
 
-* IN A 172.33.1.3
+*.dnp.dappnode                  IN      A       10.17.0.3
+*.dappnode                      IN	    A       10.17.0.3
+*                               IN      A       10.17.0.3
