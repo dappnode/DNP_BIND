@@ -14,6 +14,7 @@ my.ipfs.dnp.dappnode            IN      A       172.33.1.5
 my.ethchain.dnp.dappnode        IN      A       172.33.1.6
 my.installer.dnp.dappnode       IN      A       172.33.1.7
 my.wamp.dnp.dappnode            IN      A       172.33.1.8
+my.admin.dnp.dappnode           IN      A       172.33.1.9
 
 *.dnp.dappnode                  IN      A       172.33.1.3
 *.dappnode                      IN	    A       172.33.1.3

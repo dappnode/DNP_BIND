@@ -29,7 +29,7 @@ $ git clone https://github.com/dappnode/DNP_BIND
 ```
 
 ```
-$ docker-compose build
+$ docker-compose -f docker-compose-dnp_bind.yml build
 or 
 $ docker build --rm -f build/Dockerfile -t dnp_bind:dev build 
 ```
@@ -38,19 +38,19 @@ $ docker build --rm -f build/Dockerfile -t dnp_bind:dev build
 
 ### Start
 ```
-$ docker-compose up -d
+$ docker-compose -f docker-compose-dnp_bind.yml up -d
 ```
 ### Stop
 ```
-$ docker-compose down
+$ docker-compose  -f docker-compose-dnp_bind.yml down
 ```
 ### Status
 ```
-$ docker-compose ps
+$ docker-compose  -f docker-compose-dnp_bind.yml ps
 ```
 ### Logs
 ```
-$ docker-compose logs -f
+$ docker-compose  -f docker-compose-dnp_bind.yml logs -f
 ```
 
 ### Testing
@@ -90,14 +90,12 @@ eth.			38400	IN	NS	172.33.1.2.eth.
 ;; MSG SIZE  rcvd: 102
 ```
 
-**Note**: In case of having the port 53 occupied, you should change them in the file docker-compose.yml by other.
-
 ## Generating a tar.xz image
 
 [xz](https://tukaani.org/xz/) is required 
 
 ```
-$ docker save dnp_bind:dev | xz -9 > dnp_bind.tar.xz
+$ docker save dnp_bind:dev | xz -e9vT0 > dnp_bind.tar.xz
 ```
 
 You can download the latest tar.xz version from here [releases](https://github.com/dappnode/DNP_BIND/releases).
