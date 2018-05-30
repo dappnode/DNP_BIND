@@ -1,6 +1,14 @@
-# DNP_BIND
+# DAppNode Package Bind (Core)
+
+[![Website dappnode.io](https://img.shields.io/badge/Website-dappnode.io-brightgreen.svg)](https://dappnode.io/)
+[![Documentation Wiki](https://img.shields.io/badge/Documentation-Wiki-brightgreen.svg)](https://github.com/dappnode/DAppNode/wiki)
+[![GIVETH Campaign](https://img.shields.io/badge/GIVETH-Campaign-1e083c.svg)](https://alpha.giveth.io/campaigns/OcKJryNwjeidMXi9)
+[![RIOT DAppNode](https://img.shields.io/badge/RIOT-DAppNode-blue.svg)](https://riot.im/app/#/room/#DAppNode:matrix.org)
+[![Twitter Follow](https://img.shields.io/twitter/follow/espadrine.svg?style=social&label=Follow)](https://twitter.com/DAppNODE?lang=es)
 
 Dappnode package responsible for providing DNS resolution
+
+It is an AragonApp whose repo is deployed at this address: [0xb7e15019b306b9d76068742330e10cdc61bf5006](https://etherscan.io/address/0xb7e15019b306b9d76068742330e10cdc61bf5006) and whose ENS address is: [bind.dnp.dappnode.eth](https://etherscan.io/enslookup?q=bind.dnp.dappnode.eth])
 
 ## Getting Started
 
