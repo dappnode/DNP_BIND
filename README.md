@@ -1,4 +1,9 @@
+
 # DAppNode Package Bind (Core)
+
+<p align="left">
+  <img src="BIND-min.png" width="100"/>
+</p>
 
 [![Website dappnode.io](https://img.shields.io/badge/Website-dappnode.io-brightgreen.svg)](https://dappnode.io/)
 [![Documentation Wiki](https://img.shields.io/badge/Documentation-Wiki-brightgreen.svg)](https://github.com/dappnode/DAppNode/wiki)
