@@ -2,14 +2,14 @@
     "name": "bind.dnp.dappnode.eth",
     "version": "0.1.0",
     "description": "Dappnode package responsible for providing DNS resolution",
-    "avatar": "/ipfs/QmXFGDiNDxBVZHLH5MgEstZwHFb2J3CWHmPKmc45zQWv1z",
+    "avatar": "/ipfs/QmNPDBS2RzQrmtwQ1kpvogCA74ZSWmn8crEU86u2EKAgvy",
     "type": "dncore",
     "image": {
         "path": "bind.dnp.dappnode.eth_0.1.0.tar.xz",
         "hash": "/ipfs/QmTz1c5RWT7qyKBhnv4tUbPcMarpTSsDd8r6GXG6LD176j",
         "size": 3235875,
         "volumes": [
-            "dnp_bind_data:/etc/bind"
+            "data:/etc/bind"
         ],
         "restart": "always",
         "subnet": "172.33.0.0/16",

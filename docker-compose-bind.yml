@@ -8,16 +8,16 @@ networks:
                 - subnet: 172.33.0.0/16
 
 volumes:
-    dnp_bind_data: {}
-    
+    data: {}
+
 services:
-  dnp_bind:
+  bind.dnp.dappnode.eth:
     build: ./build
     image: bind.dnp.dappnode.eth:0.1.0
     container_name: DAppNodeCore-bind.dnp.dappnode.eth
     restart: always
     volumes:
-        - dnp_bind_data:/etc/bind
+        - data:/etc/bind
     networks:
         network:
             ipv4_address: 172.33.1.2
