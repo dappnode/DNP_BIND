@@ -1,6 +1,14 @@
-# DNP_BIND
+# DAppNode Package Bind (Core)
+
+[![Website dappnode.io](https://img.shields.io/badge/Website-dappnode.io-brightgreen.svg)](https://dappnode.io/)
+[![Documentation Wiki](https://img.shields.io/badge/Documentation-Wiki-brightgreen.svg)](https://github.com/dappnode/DAppNode/wiki)
+[![GIVETH Campaign](https://img.shields.io/badge/GIVETH-Campaign-1e083c.svg)](https://alpha.giveth.io/campaigns/OcKJryNwjeidMXi9)
+[![RIOT DAppNode](https://img.shields.io/badge/RIOT-DAppNode-blue.svg)](https://riot.im/app/#/room/#DAppNode:matrix.org)
+[![Twitter Follow](https://img.shields.io/twitter/follow/espadrine.svg?style=social&label=Follow)](https://twitter.com/DAppNODE?lang=es)
 
 Dappnode package responsible for providing DNS resolution
+
+It is an AragonApp whose repo is deployed at this address: [0xb7e15019b306b9d76068742330e10cdc61bf5006](https://etherscan.io/address/0xb7e15019b306b9d76068742330e10cdc61bf5006) and whose ENS address is: [bind.dnp.dappnode.eth](https://etherscan.io/enslookup?q=bind.dnp.dappnode.eth])
 
 ## Getting Started
 
@@ -29,7 +37,7 @@ $ git clone https://github.com/dappnode/DNP_BIND
 ```
 
 ```
-$ docker-compose build
+$ docker-compose -f docker-compose-dnp_bind.yml build
 or 
 $ docker build --rm -f build/Dockerfile -t dnp_bind:dev build 
 ```
@@ -38,19 +46,19 @@ $ docker build --rm -f build/Dockerfile -t dnp_bind:dev build
 
 ### Start
 ```
-$ docker-compose up -d
+$ docker-compose -f docker-compose-dnp_bind.yml up -d
 ```
 ### Stop
 ```
-$ docker-compose down
+$ docker-compose  -f docker-compose-dnp_bind.yml down
 ```
 ### Status
 ```
-$ docker-compose ps
+$ docker-compose  -f docker-compose-dnp_bind.yml ps
 ```
 ### Logs
 ```
-$ docker-compose logs -f
+$ docker-compose  -f docker-compose-dnp_bind.yml logs -f
 ```
 
 ### Testing
@@ -90,14 +98,12 @@ eth.			38400	IN	NS	172.33.1.2.eth.
 ;; MSG SIZE  rcvd: 102
 ```
 
-**Note**: In case of having the port 53 occupied, you should change them in the file docker-compose.yml by other.
-
 ## Generating a tar.xz image
 
 [xz](https://tukaani.org/xz/) is required 
 
 ```
-$ docker save dnp_bind:dev | xz -9 > dnp_bind.tar.xz
+$ docker save dnp_bind:dev | xz -e9vT0 > dnp_bind.tar.xz
 ```
 
 You can download the latest tar.xz version from here [releases](https://github.com/dappnode/DNP_BIND/releases).
@@ -124,7 +130,7 @@ See also the list of [contributors](https://github.com/dappnode/DNP_BIND/contrib
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the GPLv3 License - see the [LICENSE](LICENSE) file for details
 
 ## References
 

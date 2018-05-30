@@ -1,9 +1,0 @@
-version: '3.4'
-  
-services:
-  dnp_bind:
-    build: ./build
-    image: dappnode/dnp_bind
-    container_name: dnp_bind_dev
-    ports:
-      - "53:53/udp"

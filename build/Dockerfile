@@ -1,12 +1,9 @@
 FROM alpine
 
-RUN apk update && \
-    apk --no-cache add bind && \
-    mkdir -p /var/bind/log && \
-    rm -rf /var/cache/apk/*
+RUN apk --no-cache add bind && \
+    mkdir -p /var/bind/log
 
-COPY named.conf /etc/bind/named.conf
-COPY eth.hosts /etc/bind/eth.hosts
+COPY bind /etc/bind/
 
 EXPOSE 53/udp
 
