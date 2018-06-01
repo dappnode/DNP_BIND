@@ -1,33 +1,37 @@
 {
     "name": "bind.dnp.dappnode.eth",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Dappnode package responsible for providing DNS resolution",
     "avatar": "/ipfs/QmNPDBS2RzQrmtwQ1kpvogCA74ZSWmn8crEU86u2EKAgvy",
     "type": "dncore",
     "image": {
-        "path": "bind.dnp.dappnode.eth_0.1.0.tar.xz",
-        "hash": "/ipfs/QmTz1c5RWT7qyKBhnv4tUbPcMarpTSsDd8r6GXG6LD176j",
-        "size": 3235875,
-        "volumes": [
-            "data:/etc/bind"
-        ],
-        "restart": "always",
-        "subnet": "172.33.0.0/16",
-        "ipv4_address": "172.33.1.2"
+      "path": "bind.dnp.dappnode.eth_0.1.1.tar.xz",
+      "hash": "/ipfs/QmeBwnqC5BRakZmY8MfRKKBK2237fWqmDo4JsYKSiBACi2",
+      "size": 3235875,
+      "volumes": [
+        "binddnpdappnodeeth_data:/etc/bind"
+      ],
+      "restart": "always",
+      "subnet": "172.33.0.0/16",
+      "ipv4_address": "172.33.1.2"
     },
     "author": "Eduardo Antuña <eduadiez@gmail.com> (https://github.com/eduadiez)",
     "keywords": [
-        "DAppNodeCore",
-        "bind",
-        "DNS"
+      "DAppNodeCore",
+      "bind",
+      "DNS"
     ],
-    "homepage": "https://github.com/dappnode/DNP_BIND#readme",
+    "homepage": {
+      "adminui": "http://my.bind.dnp.dappnode.eth",
+      "userui": "http://my.bind.dnp.dappnode.eth",
+      "homepage": "https://github.com/dappnode/DNP_BIND#readme"
+    },
     "repository": {
-        "type": "git",
-        "url": "https://github.com/dappnode/DNP_BIND"
+      "type": "git",
+      "url": "https://github.com/dappnode/DNP_BIND"
     },
     "bugs": {
-        "url": "https://github.com/dappnode/DNP_BIND/issues"
+      "url": "https://github.com/dappnode/DNP_BIND/issues"
     },
     "license": "GPL-3.0"
-}
+  }
