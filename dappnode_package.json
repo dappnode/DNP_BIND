@@ -22,8 +22,6 @@
     "DNS"
   ],
   "homepage": {
-    "adminui": "http://my.bind.dnp.dappnode.eth",
-    "userui": "http://my.bind.dnp.dappnode.eth",
     "homepage": "https://github.com/dappnode/DNP_BIND#readme"
   },
   "repository": {
