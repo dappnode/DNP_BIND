@@ -2,11 +2,10 @@ sudo: required
 
 services:
   - docker
-  - docker-compose
 
 before_install:
   - docker-compose -f docker-compose-bind.yml build
-  - docker-compose up -d
+  - docker-compose -f docker-compose-bind.yml up -d
   - docker ps -a
 
 script:
