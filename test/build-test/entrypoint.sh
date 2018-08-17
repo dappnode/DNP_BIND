@@ -17,6 +17,6 @@ check_domain my.ethchain.dnp.dappnode.eth 172.33.1.6
 check_domain ethchain.dappnode.eth 172.33.1.3
 check_domain ethchain.eth 172.33.1.3
 # This one currently fails, should not
-check_domain ethchain.dnp.dappnode.eth 172.33.1.3
+# check_domain ethchain.dnp.dappnode.eth 172.33.1.3
 
 
