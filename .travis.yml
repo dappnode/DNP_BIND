@@ -3,5 +3,8 @@ sudo: required
 services:
   - docker
 
+before_install:
+  - chmod +x test/test.sh
+
 script:
   - test/test.sh
