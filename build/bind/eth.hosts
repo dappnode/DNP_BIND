@@ -1,3 +1,4 @@
+$ORIGIN .
 $TTL 38400	; 10 hours 40 minutes
 eth			IN SOA	eth. admin.eth. (
 				1515764902 ; serial
@@ -6,19 +7,19 @@ eth			IN SOA	eth. admin.eth. (
 				604800     ; expire (1 week)
 				38400      ; minimum (10 hours 40 minutes)
 				)
-			NS 172.33.1.2.eth.
+			NS ethchain.eth.
 
-ethchain.eth.           A       172.33.1.33
-ethchain.dappnode.eth.	A	172.33.1.33
+ethchain.eth.           A       172.33.1.3
+ethchain.dappnode.eth.	A	172.33.1.3
 
 $ORIGIN dnp.dappnode.eth.
-my.admin		A	172.33.1.99
-my.bind			A	172.33.1.22
-my.ethchain		A	172.33.1.66
-my.ethforward		A	172.33.1.33
-my.installer		A	172.33.1.77
-my.ipfs			A	172.33.1.55
-my.vpn			A	172.33.1.44
-my.wamp			A	172.33.1.88
-ethchain 		A 	172.33.1.33
+my.admin		A	172.33.1.9
+my.bind			A	172.33.1.2
+my.ethchain		A	172.33.1.6
+my.ethforward		A	172.33.1.3
+my.installer		A	172.33.1.7
+my.ipfs			A	172.33.1.5
+my.vpn			A	172.33.1.4
+my.wamp			A	172.33.1.8
+ethchain 		A 	172.33.1.3
 
