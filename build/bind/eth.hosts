@@ -17,7 +17,7 @@ my.admin		A	172.33.1.9
 my.bind			A	172.33.1.2
 my.ethchain		A	172.33.1.6
 my.ethforward		A	172.33.1.3
-my.installer		A	172.33.1.7
+my.dappmanager		A	172.33.1.7
 my.ipfs			A	172.33.1.5
 my.vpn			A	172.33.1.4
 my.wamp			A	172.33.1.8
