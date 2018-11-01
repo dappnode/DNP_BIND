@@ -1,0 +1,130 @@
+zone "bbs" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "chan" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "cyb" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "dyn" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "geek" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "gopher" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "indy" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "libre" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "neo" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "null" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "o" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "oss" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "oz" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "parody" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "pirate" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "free" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "bazar" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "coin" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "emc" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "lib" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "fur" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "bit" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "ku" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "te" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "ti" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
+zone "uu" IN {
+        type forward;
+        forwarders { 185.121.177.177; 185.121.177.177; };
+};
+
