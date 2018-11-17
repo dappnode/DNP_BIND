@@ -9,10 +9,14 @@ eth			IN SOA	eth. admin.eth. (
 				)
 			NS ethchain.eth.
 
-ethchain.eth.           A       172.33.1.3
-ethchain.dappnode.eth.	A	172.33.1.3
+$ORIGIN eth.
+* 			A 	172.33.1.3
+
+$ORIGIN dappnode.eth.
+* 			A 	172.33.1.3
 
 $ORIGIN dnp.dappnode.eth.
+* 			A	172.33.1.3
 my.admin		A	172.33.1.9
 my.bind			A	172.33.1.2
 my.ethchain		A	172.33.1.6

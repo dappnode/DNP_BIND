@@ -14,9 +14,10 @@ check_domain()
 }
 
 check_domain my.ethchain.dnp.dappnode.eth 172.33.1.6
+check_domain my.dappmanager.dnp.dappnode.eth 172.33.1.7 
 check_domain ethchain.dappnode.eth 172.33.1.3
 check_domain ethchain.eth 172.33.1.3
 check_domain ethchain.dnp.dappnode.eth 172.33.1.3
 check_domain dappnode.io 104.198.14.52
 check_domain dotbitkittypix.bit 192.185.225.13
-
+check_domain decentral.eth 172.33.1.3
