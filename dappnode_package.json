@@ -1,11 +1,11 @@
 {
   "name": "bind.dnp.dappnode.eth",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Dappnode package responsible for providing DNS resolution",
   "avatar": "/ipfs/QmNPDBS2RzQrmtwQ1kpvogCA74ZSWmn8crEU86u2EKAgvy",
   "type": "dncore",
   "image": {
-    "path": "bind.dnp.dappnode.eth_0.1.5.tar.xz",
+    "path": "bind.dnp.dappnode.eth_0.1.6.tar.xz",
     "hash": "/ipfs/QmegcCbtu7uWF4fqm96bnamVkKMpAf9TjCFNWec1wSzcoV",
     "size": 3235411,
     "volumes": [
