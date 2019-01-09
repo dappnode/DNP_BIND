@@ -42,7 +42,7 @@ $ git clone https://github.com/dappnode/DNP_BIND
 ```
 
 ```
-$ docker-compose -f docker-compose-dnp_bind.yml build
+$ docker-compose -f docker-compose-bind.yml build
 or 
 $ docker build --rm -f build/Dockerfile -t dnp_bind:dev build 
 ```
@@ -51,37 +51,36 @@ $ docker build --rm -f build/Dockerfile -t dnp_bind:dev build
 
 ### Start
 ```
-$ docker-compose -f docker-compose-dnp_bind.yml up -d
+$ docker-compose -f docker-compose-bind.yml up -d
 ```
 ### Stop
 ```
-$ docker-compose  -f docker-compose-dnp_bind.yml down
+$ docker-compose  -f docker-compose-bind.yml down
 ```
 ### Status
 ```
-$ docker-compose  -f docker-compose-dnp_bind.yml ps
+$ docker-compose  -f docker-compose-bind.yml ps
 ```
 ### Logs
 ```
-$ docker-compose  -f docker-compose-dnp_bind.yml logs -f
+$ docker-compose  -f docker-compose-bind.yml logs -f
 ```
 
 ### Testing
 
 The mission of this repo by itself is only to check the functionality provided by the bind service.
 
-For this, once it has been started, yo cand run the above command to check that it resolves the expected address:
+For this, once it has been started, you can run the below command to check that it resolves the expected address:
 
 ```
-eduadiez~ $ dig @localhost bind.dappnode.eth
+eduadiez~ $ dig @172.33.1.2 bind.dappnode.eth
 
-; <<>> DiG 9.9.7-P3 <<>> @localhost bind.dappnode.eth
-; (2 servers found)
+; <<>> DiG 9.9.4-RedHat-9.9.4-61.el7_5.1 <<>> @172.33.1.2 bind.dappnode.eth
+; (1 server found)
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 27001
-;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
-;; WARNING: recursion requested but not available
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 8657
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 4096
@@ -89,18 +88,13 @@ eduadiez~ $ dig @localhost bind.dappnode.eth
 ;bind.dappnode.eth.		IN	A
 
 ;; ANSWER SECTION:
-bind.dappnode.eth.	38400	IN	A	172.33.1.2
+bind.dappnode.eth.	38400	IN	A	172.33.1.3
 
-;; AUTHORITY SECTION:
-eth.			38400	IN	NS	172.33.1.2.eth.
+;; Query time: 2 msec
+;; SERVER: 172.33.1.2#53(172.33.1.2)
+;; WHEN: Sun Oct 07 11:39:18 CEST 2018
+;; MSG SIZE  rcvd: 62
 
-;; ADDITIONAL SECTION:
-172.33.1.2.eth.		38400	IN	A	172.33.1.3
-
-;; Query time: 1 msec
-;; SERVER: 127.0.0.1#53(127.0.0.1)
-;; WHEN: Thu Mar 01 17:22:32 CET 2018
-;; MSG SIZE  rcvd: 102
 ```
 
 ## Generating a tar.xz image
@@ -135,7 +129,7 @@ See also the list of [contributors](https://github.com/dappnode/DNP_BIND/contrib
 
 ## License
 
-This project is licensed under the GPLv3 License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details
 
 ## References
 
