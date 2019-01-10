@@ -1,23 +1,9 @@
 version: '3.4'
-
-networks:
-    network:
-        driver: bridge
-        ipam:
-            config:
-                - subnet: 172.33.0.0/16
-
+services:
+    bind.dnp.dappnode.eth:
+        image: 'bind.dnp.dappnode.eth:0.1.7'
+        build: ./build
+        volumes:
+            - 'binddnpdappnodeeth_data:/etc/bind'
 volumes:
     binddnpdappnodeeth_data: {}
-
-services:
-  bind.dnp.dappnode.eth:
-    build: ./build
-    image: bind.dnp.dappnode.eth:0.1.6
-    container_name: DAppNodeCore-bind.dnp.dappnode.eth
-    restart: always
-    volumes:
-        - binddnpdappnodeeth_data:/etc/bind
-    networks:
-        network:
-            ipv4_address: 172.33.1.2
