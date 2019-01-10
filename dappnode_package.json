@@ -5,9 +5,9 @@
   "avatar": "/ipfs/QmNPDBS2RzQrmtwQ1kpvogCA74ZSWmn8crEU86u2EKAgvy",
   "type": "dncore",
   "image": {
-    "path": "bind.dnp.dappnode.eth_0.1.6.tar.xz",
-    "hash": "/ipfs/QmegcCbtu7uWF4fqm96bnamVkKMpAf9TjCFNWec1wSzcoV",
-    "size": 3235411,
+    "path": "",
+    "hash": "",
+    "size": 0,
     "volumes": [
       "binddnpdappnodeeth_data:/etc/bind"
     ],
@@ -16,11 +16,7 @@
     "ipv4_address": "172.33.1.2"
   },
   "author": "Eduardo Antuña <eduadiez@gmail.com> (https://github.com/eduadiez)",
-  "keywords": [
-    "DAppNodeCore",
-    "bind",
-    "DNS"
-  ],
+  "keywords": ["DAppNodeCore", "bind", "DNS"],
   "homepage": {
     "homepage": "https://github.com/dappnode/DNP_BIND#readme"
   },
