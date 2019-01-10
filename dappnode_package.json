@@ -8,7 +8,9 @@
     "path": "",
     "hash": "",
     "size": 0,
-    "volumes": ["binddnpdappnodeeth_data:/etc/bind"],
+    "volumes": [
+      "binddnpdappnodeeth_data:/etc/bind"
+    ],
     "restart": "always",
     "subnet": "172.33.0.0/16",
     "ipv4_address": "172.33.1.2"
