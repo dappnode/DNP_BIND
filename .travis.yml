@@ -3,6 +3,7 @@ dist: trusty
 sudo: required
 
 stages:
+  - name: test
   - name: build-test
     if: tag != "release"
   - name: release
@@ -10,6 +11,18 @@ stages:
 
 jobs:
   include:
+    # In app tests
+    ##############
+    - stage: test
+      services:
+        - docker
+      env:
+        - INTEGRATION_TEST
+      before_install:
+        - chmod +x test/test.sh
+      script:
+        - test/test.sh
+
     # Test that it builds correctly
     ###############################
     - stage: build-test
