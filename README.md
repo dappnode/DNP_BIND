@@ -1,4 +1,3 @@
-
 # DAppNode Package Bind (Core)
 
 [![Website dappnode.io](https://img.shields.io/badge/Website-dappnode.io-brightgreen.svg)](https://dappnode.io/)
@@ -23,16 +22,16 @@ These instructions will get you a copy of the project up and running on your loc
 
 - git
 
-   Install [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) commandline tool.
+  Install [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) commandline tool.
 
 - docker
 
-   Install [docker](https://docs.docker.com/engine/installation). The community edition (docker-ce) will work. In Linux make sure you grant permissions to the current user to use docker by adding current user to docker group, `sudo usermod -aG docker $USER`. Once you update the users group, exit from the current terminal and open a new one to make effect.
+  Install [docker](https://docs.docker.com/engine/installation). The community edition (docker-ce) will work. In Linux make sure you grant permissions to the current user to use docker by adding current user to docker group, `sudo usermod -aG docker $USER`. Once you update the users group, exit from the current terminal and open a new one to make effect.
 
 - docker-compose
 
-   Install [docker-compose](https://docs.docker.com/compose/install)
-   
+  Install [docker-compose](https://docs.docker.com/compose/install)
+
 **Note**: Make sure you can run `git`, `docker ps`, `docker-compose` without any issue and without sudo command.
 
 ### Building
@@ -42,28 +41,35 @@ $ git clone https://github.com/dappnode/DNP_BIND
 ```
 
 ```
-$ docker-compose -f docker-compose-bind.yml build
-or 
-$ docker build --rm -f build/Dockerfile -t dnp_bind:dev build 
+$ docker-compose build
+or
+$ docker build --rm -f build/Dockerfile -t bind.dnp.dappnode.eth:dev build
 ```
 
 ## Running
 
 ### Start
+
 ```
-$ docker-compose -f docker-compose-bind.yml up -d
+$ docker-compose up -d
 ```
+
 ### Stop
+
 ```
-$ docker-compose  -f docker-compose-bind.yml down
+$ docker-compose  down
 ```
+
 ### Status
+
 ```
-$ docker-compose  -f docker-compose-bind.yml ps
+$ docker-compose  ps
 ```
+
 ### Logs
+
 ```
-$ docker-compose  -f docker-compose-bind.yml logs -f
+$ docker-compose  logs -f
 ```
 
 ### Testing
@@ -99,10 +105,10 @@ bind.dappnode.eth.	38400	IN	A	172.33.1.3
 
 ## Generating a tar.xz image
 
-[xz](https://tukaani.org/xz/) is required 
+[xz](https://tukaani.org/xz/) is required
 
 ```
-$ docker save dnp_bind:dev | xz -e9vT0 > dnp_bind.tar.xz
+$ docker save bind.dnp.dappnode.eth:dev | xz -e9vT0 > bind.dnp.dappnode.eth_x.y.z.tar.xz
 ```
 
 You can download the latest tar.xz version from here [releases](https://github.com/dappnode/DNP_BIND/releases).
@@ -110,7 +116,7 @@ You can download the latest tar.xz version from here [releases](https://github.c
 ### Loading a Docker image
 
 ```
-$docker load -i dnp_bind.tar.xz
+$docker load -i bind.dnp.dappnode.eth_x.y.z.tar.xz
 ```
 
 ## Contributing
@@ -119,11 +125,11 @@ Please read [CONTRIBUTING.md](https://github.com/dappnode) for details on our co
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/dappnode/DNP_BIND/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/dappnode/DNP_BIND/tags).
 
 ## Authors
 
-* **Eduardo Antuña Díez** - *Initial work* - [eduadiez](https://github.com/eduadiez)
+- **Eduardo Antuña Díez** - _Initial work_ - [eduadiez](https://github.com/eduadiez)
 
 See also the list of [contributors](https://github.com/dappnode/DNP_BIND/contributors) who participated in this project.
 
