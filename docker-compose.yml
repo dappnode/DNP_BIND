@@ -11,13 +11,17 @@ volumes:
     binddnpdappnodeeth_data: {}
 
 services:
-  bind.dnp.dappnode.eth:
-    build: ./build
-    image: bind.dnp.dappnode.eth:0.1.6
-    container_name: DAppNodeCore-bind.dnp.dappnode.eth
-    restart: always
-    volumes:
-        - binddnpdappnodeeth_data:/etc/bind
-    networks:
-        network:
-            ipv4_address: 172.33.1.2
+    bind.dnp.dappnode.eth:
+        build: ./build
+        image: bind.dnp.dappnode.eth:0.1.6
+        container_name: DAppNodeCore-bind.dnp.dappnode.eth
+        restart: always
+        volumes:
+            - binddnpdappnodeeth_data:/etc/bind
+        networks:
+            network:
+                ipv4_address: 172.33.1.2
+        logging:
+            options:
+                max-size: "10m"
+                max-file: "3"
