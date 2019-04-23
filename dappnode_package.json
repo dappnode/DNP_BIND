@@ -1,6 +1,6 @@
 {
   "name": "bind.dnp.dappnode.eth",
-  "version": "0.2.0-alpha",
+  "version": "0.2.0",
   "description": "Dappnode package responsible for providing DNS resolution",
   "avatar": "/ipfs/QmNPDBS2RzQrmtwQ1kpvogCA74ZSWmn8crEU86u2EKAgvy",
   "type": "dncore",
