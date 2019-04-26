@@ -2,12 +2,22 @@ language: node_js
 dist: trusty
 sudo: required
 
+# ########################
+# How to trigger a release
+#
+# Push a tag to origin:
+# - "release" (= patch)
+# - "release/patch"
+# - "release/minor"
+# - "release/major"
+# ########################
+
 stages:
   - name: test
   - name: build-test
-    if: tag != "release"
+    if: tag =~ /^(?!release\/).*/
   - name: release
-    if: tag = "release"
+    if: tag =~ /^release\/(major|minor|patch)$/
 
 jobs:
   include:
@@ -42,8 +52,9 @@ jobs:
       script:
         - npm install -g @dappnode/dappnodesdk
         - docker-compose build
-        - dappnodesdk publish patch -p infura
-      node_js: lts/*
+        - TYPE=${PUBLISH:-minor}
+        - dappnodesdk publish ${TYPE} -p infura
+      node_js: "10.15.3"
       before_deploy:
         - wget https://raw.githubusercontent.com/dappnode/DAppNode/master/scripts/before_deploy.sh
         - source before_deploy.sh
@@ -59,9 +70,8 @@ jobs:
         name: "$TRAVIS_TAG"
         body: "# Changelog"
         on:
-          branch: master
           tags: true
-          condition: "$TRAVIS_TAG =~ ^release*$"
+          condition: "$TRAVIS_TAG = release || $TRAVIS_TAG = release/patch || $TRAVIS_TAG = release/minor || $TRAVIS_TAG = release/major"
       after_deploy:
-        - wget https://raw.githubusercontent.com/dappnode/DAppNode/master/scripts/after_deploy.sh
-        - source after_deploy.sh
+        # - wget https://raw.githubusercontent.com/dappnode/DAppNode/master/scripts/after_deploy.sh
+        # - source after_deploy.sh
