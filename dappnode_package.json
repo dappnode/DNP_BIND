@@ -8,20 +8,17 @@
     "path": "bind.dnp.dappnode.eth_0.1.7.tar.xz",
     "hash": "/ipfs/QmP953irsRqT7MDHbxEW4hc8vZuXH8JCuFB8wifD6YA3N4",
     "size": 16172746,
-    "volumes": [
-      "binddnpdappnodeeth_data:/etc/bind"
-    ],
+    "volumes": ["binddnpdappnodeeth_data:/etc/bind"],
     "restart": "always",
     "subnet": "172.33.0.0/16",
     "ipv4_address": "172.33.1.2"
   },
-  "author": "Eduardo Antuña <eduadiez@gmail.com> (https://github.com/eduadiez)",
-  "keywords": [
-    "DAppNodeCore",
-    "bind",
-    "DNS"
+  "author": "DAppNode Association <admin@dappnode.io> (https://github.com/dappnode)",
+  "contributors": [
+    "Eduardo Antuña <eduadiez@gmail.com> (https://github.com/eduadiez)"
   ],
-  "homepage": {
+  "keywords": ["DAppNodeCore", "bind", "DNS"],
+  "links": {
     "homepage": "https://github.com/dappnode/DNP_BIND#readme"
   },
   "repository": {

@@ -1,5 +1,5 @@
 language: node_js
-dist: trusty
+dist: xenial
 sudo: required
 
 # ########################
@@ -15,7 +15,7 @@ sudo: required
 stages:
   - name: test
   - name: build-test
-    if: tag =~ /^(?!release\/).*/
+    if: tag !~ /^release\/(major|minor|patch)$/
   - name: release
     if: tag =~ /^release\/(major|minor|patch)$/
 
@@ -24,10 +24,9 @@ jobs:
     # In app tests
     ##############
     - stage: test
+      name: Integration tests
       services:
         - docker
-      env:
-        - INTEGRATION_TEST
       before_install:
         - chmod +x test/test.sh
       script:
@@ -52,15 +51,18 @@ jobs:
       script:
         - npm install -g @dappnode/dappnodesdk
         - docker-compose build
-        - TYPE=${PUBLISH:-minor}
+        - "TYPE=${TRAVIS_TAG##*/}"
+        - "[ ! '$TYPE' = 'release' ] || TYPE='patch'"
         - dappnodesdk publish ${TYPE} -p infura
-      node_js: "10.15.3"
+      node_js:
+        - "10.15.3"
       before_deploy:
         - wget https://raw.githubusercontent.com/dappnode/DAppNode/master/scripts/before_deploy.sh
         - source before_deploy.sh
       deploy:
         provider: releases
         prerelease: true
+        overwrite: true
         api_key: "$GITHUB_TOKEN"
         file_glob: true
         # $RELEASE_VERSION is exported on before_deploy.sh
@@ -72,6 +74,6 @@ jobs:
         on:
           tags: true
           condition: "$TRAVIS_TAG = release || $TRAVIS_TAG = release/patch || $TRAVIS_TAG = release/minor || $TRAVIS_TAG = release/major"
-      after_deploy:
-        # - wget https://raw.githubusercontent.com/dappnode/DAppNode/master/scripts/after_deploy.sh
-        # - source after_deploy.sh
+      # after_deploy:
+      #   - wget https://raw.githubusercontent.com/dappnode/DAppNode/master/scripts/after_deploy.sh
+      #   - source after_deploy.sh
