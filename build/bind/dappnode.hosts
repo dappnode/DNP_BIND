@@ -1,0 +1,16 @@
+$ORIGIN .
+$TTL 38400		; 10 hours 40 minutes
+dappnode		IN SOA	dappnode. administrator.dappnode. (
+				1515764902 ; serial
+				10800      ; refresh (3 hours)
+				3600       ; retry (1 hour)
+				604800     ; expire (1 week)
+				38400      ; minimum (10 hours 40 minutes)
+				)
+			NS	172.33.1.2
+$ORIGIN dappnode.
+admin			A	172.33.1.9
+my			A	172.33.1.9
+ethchain		A	172.33.1.6
+fullnode		A	172.33.1.6
+ipfs			A	172.33.1.5
