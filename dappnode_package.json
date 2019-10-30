@@ -1,14 +1,16 @@
 {
   "name": "bind.dnp.dappnode.eth",
-  "version": "0.2.0",
-  "description": "Dappnode package responsible for providing DNS resolution",
+  "version": "10.0.2",
+  "description": "AVADO Dappnode package responsible for providing DNS resolution",
   "avatar": "/ipfs/QmNPDBS2RzQrmtwQ1kpvogCA74ZSWmn8crEU86u2EKAgvy",
   "type": "dncore",
   "image": {
-    "path": "bind.dnp.dappnode.eth_0.1.7.tar.xz",
-    "hash": "/ipfs/QmP953irsRqT7MDHbxEW4hc8vZuXH8JCuFB8wifD6YA3N4",
-    "size": 16172746,
-    "volumes": ["binddnpdappnodeeth_data:/etc/bind"],
+    "path": "bind.dnp.dappnode.eth_10.0.2.tar.xz",
+    "hash": "/ipfs/QmUjD6vVwQHCjGiEjyX9fNqtQWe4ddN1M3gX2K1G7AWncN",
+    "size": 18068336,
+    "volumes": [
+      "binddnpdappnodeeth_data:/etc/bind"
+    ],
     "restart": "always",
     "subnet": "172.33.0.0/16",
     "ipv4_address": "172.33.1.2"
@@ -17,7 +19,11 @@
   "contributors": [
     "Eduardo Antuña <eduadiez@gmail.com> (https://github.com/eduadiez)"
   ],
-  "keywords": ["DAppNodeCore", "bind", "DNS"],
+  "keywords": [
+    "DAppNodeCore",
+    "bind",
+    "DNS"
+  ],
   "links": {
     "homepage": "https://github.com/dappnode/DNP_BIND#readme"
   },

@@ -6,6 +6,9 @@
 if [ ! -f /etc/bind/dappnode.hosts ]; then
     cp /config/dappnode.hosts /etc/bind/dappnode.hosts
 fi
+if [ ! -f /etc/bind/avado.hosts ]; then
+    cp /config/avado.hosts /etc/bind/avado.hosts
+fi
 
 diff /etc/bind/named.conf /config/named.conf
 if [ $? -ne 0 ]; then
