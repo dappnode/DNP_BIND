@@ -1,0 +1,13 @@
+zone "." IN {
+		type hint;
+		file "named.ca";
+};
+zone "eth" {
+    in-view "dappmanager";
+};
+zone "dappnode" {
+    in-view "dappmanager";
+};
+zone "test" {
+    in-view "dappmanager";
+};
