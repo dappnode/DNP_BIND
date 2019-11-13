@@ -13,7 +13,7 @@ volumes:
 services:
     bind.dnp.dappnode.eth:
         build: ./build
-        image: bind.dnp.dappnode.eth:0.2.0
+        image: bind.dnp.dappnode.eth:0.2.1
         container_name: DAppNodeCore-bind.dnp.dappnode.eth
         restart: always
         volumes:
