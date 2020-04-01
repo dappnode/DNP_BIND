@@ -1,15 +1,9 @@
 #!/bin/sh
 
-##################
-# v0.2.0 migration
-##################
 if [ ! -f /etc/bind/dappnode.hosts ]; then
     cp /config/dappnode.hosts /etc/bind/dappnode.hosts
 fi
 
-##################
-# v0.2.1 migration
-##################
 if [ ! -f /etc/bind/dappnode.io.hosts ]; then
     cp /config/dappnode.io.hosts /etc/bind/dappnode.io.hosts
 fi

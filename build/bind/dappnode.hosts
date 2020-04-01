@@ -11,6 +11,4 @@ dappnode		IN SOA	dappnode. administrator.dappnode. (
 $ORIGIN dappnode.
 admin			A	172.33.1.9
 my			A	172.33.1.9
-ethchain		A	172.33.1.6
-fullnode		A	172.33.1.6
 ipfs			A	172.33.1.5
