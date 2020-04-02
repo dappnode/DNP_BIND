@@ -12,13 +12,12 @@ if [ ! -f /etc/bind/default.hosts ]; then
     cp /config/default.hosts /etc/bind/default.hosts
 fi
 
-if [ ! -f /etc/bind/test.hosts ]; then
-    cp /config/test.hosts /etc/bind/test.hosts
-fi
+cp /config/eth.static.hosts /etc/bind/eth.static.hosts
+cp /config/eth.hosts /etc/bind/eth.hosts
 
 diff /etc/bind/named.conf /config/named.conf
 if [ $? -ne 0 ]; then
     cp /config/named.conf /etc/bind/named.conf
 fi
 
-supervisord
+exec supervisord
