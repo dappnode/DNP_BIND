@@ -9,15 +9,4 @@ eth			IN SOA	eth. admin.eth. (
 				)
 			    NS	172.33.1.2.eth.
 $ORIGIN eth.
-*			    A	172.33.1.7
-dappnode		A	172.33.1.7
-$ORIGIN dappnode.eth.
-*			    A	172.33.1.7
-$ORIGIN dnp.dappnode.eth.
-*			    A	172.33.1.7
-my.admin		A	172.33.1.9
-my.bind			A	172.33.1.2
-my.dappmanager	A	172.33.1.7
-my.ipfs			A	172.33.1.5
-my.vpn			A	172.33.1.4
-my.wamp			A	172.33.1.8
+$INCLUDE "/etc/bind/eth.static.hosts"
