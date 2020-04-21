@@ -1,0 +1,17 @@
+{
+  "0.2.1": {
+    "hash": "/ipfs/QmRyrMYzrBHYZvCY6s1j2QEBab3z6aZLABNX1KEwrzxur9",
+    "type": "manifest",
+    "uploadedTo": {
+      "dappnode": "Wed, 13 Nov 2019 18:15:52 GMT"
+    },
+    "link": "http://my.dappnode/#/sdk/publish/r=bind.dnp.dappnode.eth&v=0.2.1&h=%2Fipfs%2FQmRyrMYzrBHYZvCY6s1j2QEBab3z6aZLABNX1KEwrzxur9"
+  },
+  "0.2.2": {
+    "hash": "/ipfs/QmcCv4WDqRDghs47KhSqE6BXf9CiQLHwDRYeDhZELpWvf4",
+    "type": "manifest",
+    "uploadedTo": {
+      "dappnode": "Mon, 06 Apr 2020 09:58:53 GMT"
+    }
+  }
+}
