@@ -8,11 +8,20 @@
     "link": "http://my.dappnode/#/sdk/publish/r=bind.dnp.dappnode.eth&v=0.2.1&h=%2Fipfs%2FQmRyrMYzrBHYZvCY6s1j2QEBab3z6aZLABNX1KEwrzxur9"
   },
   "0.2.2": {
-    "hash": "/ipfs/QmP4bVyCTfk6wQJ9AUpK8mcbzHHSv6HH9HqzSpVzAjLTL3",
+    "hash": "/ipfs/QmbEoYfXxLPpy2tVFngBMTZEgRQBpkHHzSgfEQpFBLMHXF",
     "type": "directory",
     "uploadedTo": {
-      "dappnode": "Tue, 21 Apr 2020 14:50:25 GMT"
+      "dappnode": "Thu, 23 Apr 2020 15:02:14 GMT"
     },
     "link": "http://my.dappnode/#/sdk/publish/r=bind.dnp.dappnode.eth&v=0.2.2&h=%2Fipfs%2FQmP4bVyCTfk6wQJ9AUpK8mcbzHHSv6HH9HqzSpVzAjLTL3"
+  },
+  "0.2.3": {
+    "hash": "/ipfs/QmRB5Q4SMEEJ8JmhQu9w4yjcyJNvGRKqZwpAitEfMvUBkX",
+    "type": "directory",
+    "uploadedTo": {
+      "remote": "Thu, 23 Apr 2020 15:05:31 GMT",
+      "dappnode": "Thu, 23 Apr 2020 15:09:35 GMT"
+    },
+    "link": "http://my.dappnode/#/sdk/publish/r=bind.dnp.dappnode.eth&v=0.2.3&h=%2Fipfs%2FQmRB5Q4SMEEJ8JmhQu9w4yjcyJNvGRKqZwpAitEfMvUBkX"
   }
 }

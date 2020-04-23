@@ -6,15 +6,15 @@ networks:
       config:
         - subnet: 172.33.0.0/16
 volumes:
-  binddnpdappnodeeth_data: {}
+  binddnpdappnodeeth_bind: {}
 services:
   bind.dnp.dappnode.eth:
     build: ./build
-    image: 'bind.dnp.dappnode.eth:0.2.2'
+    image: 'bind.dnp.dappnode.eth:0.2.3'
     container_name: DAppNodeCore-bind.dnp.dappnode.eth
     restart: always
     volumes:
-      - 'binddnpdappnodeeth_data:/etc/bind'
+      - 'binddnpdappnodeeth_bind:/etc/bind'
     networks:
       network:
         ipv4_address: 172.33.1.2

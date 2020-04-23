@@ -1,6 +1,6 @@
 {
   "name": "bind.dnp.dappnode.eth",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Dappnode package responsible for providing DNS resolution",
   "type": "dncore",
   "author": "DAppNode Association <admin@dappnode.io> (https://github.com/dappnode)",
