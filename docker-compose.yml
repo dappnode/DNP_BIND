@@ -2,7 +2,7 @@ version: '3.4'
 services:
   bind.dnp.dappnode.eth:
     build: ./build
-    image: 'bind.dnp.dappnode.eth:0.2.3'
+    image: 'bind.dnp.dappnode.eth:0.2.5'
     container_name: DAppNodeCore-bind.dnp.dappnode.eth
     restart: always
     networks:
