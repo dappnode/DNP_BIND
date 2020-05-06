@@ -16,11 +16,10 @@
     "link": "http://my.dappnode/#/sdk/publish/r=bind.dnp.dappnode.eth&v=0.2.2&h=%2Fipfs%2FQmP4bVyCTfk6wQJ9AUpK8mcbzHHSv6HH9HqzSpVzAjLTL3"
   },
   "0.2.3": {
-    "hash": "/ipfs/QmRB5Q4SMEEJ8JmhQu9w4yjcyJNvGRKqZwpAitEfMvUBkX",
+    "hash": "/ipfs/QmRk3jJ7dJRLrc3ncjJQjaZ9Zg1sK8ycKCBVhM13zJ7rRy",
     "type": "directory",
     "uploadedTo": {
-      "remote": "Thu, 23 Apr 2020 15:05:31 GMT",
-      "dappnode": "Thu, 23 Apr 2020 15:09:35 GMT"
+      "dappnode": "Mon, 04 May 2020 13:53:44 GMT"
     },
     "link": "http://my.dappnode/#/sdk/publish/r=bind.dnp.dappnode.eth&v=0.2.3&h=%2Fipfs%2FQmRB5Q4SMEEJ8JmhQu9w4yjcyJNvGRKqZwpAitEfMvUBkX"
   }
