@@ -15,7 +15,7 @@ $ORIGIN dappnode.eth.
 *			    A	172.33.1.7
 $ORIGIN dnp.dappnode.eth.
 *			    A	172.33.1.7
-my.admin		A	172.33.1.9
+my.admin		A	172.33.1.7
 my.bind			A	172.33.1.2
 my.dappmanager	A	172.33.1.7
 my.ipfs			A	172.33.1.5
