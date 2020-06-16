@@ -9,6 +9,6 @@ dappnode		IN SOA	dappnode. administrator.dappnode. (
 				)
 			NS	172.33.1.2
 $ORIGIN dappnode.
-admin			A	172.33.1.9
-my			A	172.33.1.9
+admin			A	172.33.1.7
+my				A	172.33.1.7
 ipfs			A	172.33.1.5
