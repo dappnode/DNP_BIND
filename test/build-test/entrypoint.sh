@@ -13,10 +13,12 @@ check_domain()
     fi
 }
 
-check_domain my.ethchain.dnp.dappnode.eth 172.33.1.6
-check_domain ethchain.dappnode.eth 172.33.1.3
-check_domain ethchain.eth 172.33.1.3
-# This one currently fails, should not
-# check_domain ethchain.dnp.dappnode.eth 172.33.1.3
+# my. domains
+check_domain my.ipfs.dnp.dappnode.eth 172.33.1.5
+# .dappnode domains
+check_domain ipfs.dappnode 172.33.1.5
+# other .eth domains
+check_domain ipfs.dappnode.eth 172.33.1.7
+check_domain ipfs.eth 172.33.1.7
 
 
