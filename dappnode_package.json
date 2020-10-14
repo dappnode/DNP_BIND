@@ -1,17 +1,14 @@
 {
   "name": "bind.dnp.dappnode.eth",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Dappnode package responsible for providing DNS resolution",
   "type": "dncore",
+  "architectures": ["linux/amd64", "linux/arm64"],
   "author": "DAppNode Association <admin@dappnode.io> (https://github.com/dappnode)",
   "contributors": [
     "Eduardo Antuña <eduadiez@gmail.com> (https://github.com/eduadiez)"
   ],
-  "keywords": [
-    "DAppNodeCore",
-    "bind",
-    "DNS"
-  ],
+  "keywords": ["DAppNodeCore", "bind", "DNS"],
   "links": {
     "homepage": "https://github.com/dappnode/DNP_BIND#readme"
   },
