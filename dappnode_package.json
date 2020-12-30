@@ -1,6 +1,6 @@
 {
   "name": "bind.dnp.dappnode.eth",
-  "version": "0.2.6",
+  "version": "0.2.8",
   "description": "Dappnode package responsible for providing DNS resolution",
   "type": "dncore",
   "architectures": ["linux/amd64", "linux/arm64"],
