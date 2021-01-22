@@ -1,13 +1,13 @@
 {
   "name": "bind.dnp.dappnode.eth",
-  "version": "10.0.2",
+  "version": "10.0.4",
   "description": "AVADO Dappnode package responsible for providing DNS resolution",
-  "avatar": "/ipfs/QmNPDBS2RzQrmtwQ1kpvogCA74ZSWmn8crEU86u2EKAgvy",
+  "avatar": "/ipfs/QmPiBZ5zaQKCjXvnjHQcwKkgeuBR7dhPxfnNELwjrqMUdv",
   "type": "dncore",
   "image": {
-    "path": "bind.dnp.dappnode.eth_10.0.2.tar.xz",
-    "hash": "/ipfs/QmUjD6vVwQHCjGiEjyX9fNqtQWe4ddN1M3gX2K1G7AWncN",
-    "size": 18068336,
+    "path": "bind.dnp.dappnode.eth_10.0.4.tar.xz",
+    "hash": "/ipfs/QmbmrpfhLLA72UtB6pH7Rngzo6raBpjoUp9QbXqRCHcx1n",
+    "size": 24495644,
     "volumes": [
       "binddnpdappnodeeth_data:/etc/bind"
     ],
