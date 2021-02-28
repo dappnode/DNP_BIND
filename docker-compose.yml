@@ -1,18 +1,16 @@
 version: "3.4"
 services:
-  bind.dnp.dappnode.eth:
+  bind-slim.dnp.dappnode.eth:
     build: ./build
-    image: "bind.dnp.dappnode.eth:0.2.6"
-    container_name: DAppNodeCore-bind.dnp.dappnode.eth
+    image: "bind-slim.dnp.dappnode.eth:0.2.6"
+    container_name: DAppNodeCore-bind-slim.dnp.dappnode.eth
     restart: always
     networks:
-      network:
+      dncore_network:
         ipv4_address: 172.33.1.2
     logging:
       driver: journald
+
 networks:
-  network:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.33.0.0/16
+  dncore_network:
+    external: true
