@@ -33,7 +33,7 @@ server_names = ['scaleway-fr', 'commons-host', 'dnscrypt.me', 'cloudflare']
 ## List of local addresses and ports to listen to. Can be IPv4 and/or IPv6.
 ## Note: When using systemd socket activation, choose an empty set (i.e. [] ).
 
-listen_addresses = ['127.0.0.1:5353']
+listen_addresses = ['0.0.0.0:53']
 
 
 ## Maximum number of simultaneous client connections to accept
@@ -235,7 +235,7 @@ block_ipv6 = false
 ## example.com 9.9.9.9
 ## example.net 9.9.9.9,8.8.8.8,1.1.1.1
 
-# forwarding_rules = 'forwarding-rules.txt'
+forwarding_rules = 'forwarding-rules.txt'
 
 
 

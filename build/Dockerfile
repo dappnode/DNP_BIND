@@ -1,12 +1,10 @@
 FROM alpine
 
-RUN apk --no-cache add bind dnscrypt-proxy supervisor && \
-    mkdir -p /var/bind/log
+RUN apk --no-cache add dnscrypt-proxy 
 
-COPY bind /etc/bind/
-COPY supervisord.conf .
 COPY dnscrypt-proxy.toml .
+COPY forwarding-rules.txt .
 
 EXPOSE 53/udp
 
-ENTRYPOINT [ "supervisord" ]
+ENTRYPOINT [ "dnscrypt-proxy", "-config", "./dnscrypt-proxy.toml" ]
