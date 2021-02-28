@@ -181,7 +181,7 @@ fallback_resolver = '1.1.1.1:53'
 ## Never let dnscrypt-proxy try to use the system DNS settings;
 ## unconditionally use the fallback resolver.
 
-ignore_system_dns = true
+ignore_system_dns = false
 
 
 ## Maximum time (in seconds) to wait for network connectivity before
