@@ -1,10 +1,9 @@
 FROM alpine
 
-RUN apk --no-cache add dnscrypt-proxy 
+RUN apk --no-cache add dnscrypt-proxy curl
 
-COPY dnscrypt-proxy.toml .
-COPY forwarding-rules.txt .
+COPY dnscrypt-proxy.toml forwarding-rules.txt entrypoint.sh ./
 
 EXPOSE 53/udp
 
-ENTRYPOINT [ "dnscrypt-proxy", "-config", "./dnscrypt-proxy.toml" ]
+ENTRYPOINT [ "./entrypoint.sh" ]
