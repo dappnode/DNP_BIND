@@ -6,11 +6,11 @@ if [ ! -f "cloaking-rules.txt" ]; then
     echo "Trying to fetch domain and internal IP..."
     for i in {1..30}; do
         if [ -z $INTERNAL_IP  ]; then
-            INTERNAL_IP=$(curl -s http://172.33.1.7/global-envs/INTERNAL_IP)
+            INTERNAL_IP=$(curl -s http://my.dappnode/global-envs/INTERNAL_IP)
         fi
 
         if [ -z $DOMAIN ]; then
-            DOMAIN=$(curl -s http://172.33.1.7/global-envs/DOMAIN)
+            DOMAIN=$(curl -s http://my.dappnode/global-envs/DOMAIN)
         fi
         
         if [ -z $INTERNAL_IP ] || [ -z $DOMAIN ]; then
