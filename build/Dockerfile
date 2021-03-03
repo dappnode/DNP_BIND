@@ -1,12 +1,9 @@
 FROM alpine
 
-RUN apk --no-cache add bind dnscrypt-proxy supervisor && \
-    mkdir -p /var/bind/log
+RUN apk --no-cache add dnscrypt-proxy curl
 
-COPY bind /etc/bind/
-COPY supervisord.conf .
-COPY dnscrypt-proxy.toml .
+COPY dnscrypt-proxy.toml forwarding-rules.txt entrypoint.sh ./
 
 EXPOSE 53/udp
 
-ENTRYPOINT [ "supervisord" ]
+ENTRYPOINT [ "./entrypoint.sh" ]
