@@ -7,8 +7,9 @@ services:
     container_name: Test
     dns: 172.33.1.2
     networks:
-      - dnp_bind_network
+      - dncore_network
 
 networks:
-  dnp_bind_network:
+  dncore_network:
     external: true
+    name: dncore_network
