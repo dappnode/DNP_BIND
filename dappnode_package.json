@@ -1,23 +1,12 @@
 {
-  "name": "bind.dnp.dappnode.eth",
-  "version": "0.2.6",
-  "description": "Dappnode package responsible for providing DNS resolution",
-  "type": "dncore",
-  "architectures": ["linux/amd64", "linux/arm64"],
-  "author": "DAppNode Association <admin@dappnode.io> (https://github.com/dappnode)",
-  "contributors": [
-    "Eduardo Antuña <eduadiez@gmail.com> (https://github.com/eduadiez)"
-  ],
-  "keywords": ["DAppNodeCore", "bind", "DNS"],
+  "name": "dnscrypt-proxy.public.dappnode.eth",
+  "version": "0.1.0",
+  "description": "DNS forwarder for DAppNode",
+  "type": "service",
+  "author": "Shardlabs",
+  "categories": ["Developer tools"],
   "links": {
-    "homepage": "https://github.com/dappnode/DNP_BIND#readme"
+    "homepage": "https://your-project-homepage-or-docs.io"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dappnode/DNP_BIND"
-  },
-  "bugs": {
-    "url": "https://github.com/dappnode/DNP_BIND/issues"
-  },
-  "license": "GPL-3.0"
+  "license": "GLP-3.0"
 }

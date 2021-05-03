@@ -1,144 +1,101 @@
-# DAppNode Package Bind (Core)
+# ![dnscrypt-proxy 2](https://raw.github.com/dnscrypt/dnscrypt-proxy/master/logo.png?3)
 
-[![Website dappnode.io](https://img.shields.io/badge/Website-dappnode.io-brightgreen.svg)](https://dappnode.io/)
-[![Documentation Wiki](https://img.shields.io/badge/Documentation-Wiki-brightgreen.svg)](https://docs.dappnode.io)
-[![GIVETH Campaign](https://img.shields.io/badge/GIVETH-Campaign-1e083c.svg)](https://donate.dappnode.io)
-[![ELEMENT DAppNode](https://img.shields.io/badge/ELEMENT-DAppNode-blue.svg)](https://app.element.io/#/room/#DAppNode:matrix.org)
-[![Twitter Follow](https://img.shields.io/twitter/follow/espadrine.svg?style=social&label=Follow)](https://twitter.dappnode.io)
+[![Financial Contributors on Open Collective](https://opencollective.com/dnscrypt/all/badge.svg?label=financial+contributors)](https://opencollective.com/dnscrypt)
+[![DNSCrypt-Proxy Release](https://img.shields.io/github/release/dnscrypt/dnscrypt-proxy.svg?label=Latest%20Release&style=popout)](https://github.com/dnscrypt/dnscrypt-proxy/releases/latest)
+[![Build Status](https://github.com/DNSCrypt/dnscrypt-proxy/workflows/CI%20and%20optionally%20publish/badge.svg)](https://github.com/DNSCrypt/dnscrypt-proxy/actions)
+![CodeQL scan](https://github.com/DNSCrypt/dnscrypt-proxy/workflows/CodeQL%20scan/badge.svg)
+![ShiftLeft Scan](https://github.com/DNSCrypt/dnscrypt-proxy/workflows/ShiftLeft%20Scan/badge.svg)
+[![#dnscrypt-proxy:matrix.org](https://img.shields.io/matrix/dnscrypt-proxy:matrix.org.svg?label=DNSCrypt-Proxy%20Matrix%20Chat&server_fqdn=matrix.org&style=popout)](https://matrix.to/#/#dnscrypt-proxy:matrix.org)
 
-Dappnode package responsible for providing DNS resolution
+## Overview
 
-It is an AragonApp whose repo is deployed at this address: [0xb7e15019b306b9d76068742330e10cdc61bf5006](https://etherscan.io/address/0xb7e15019b306b9d76068742330e10cdc61bf5006) and whose ENS address is: [bind.dnp.dappnode.eth](https://etherscan.io/enslookup?q=bind.dnp.dappnode.eth])
+A flexible DNS proxy, with support for modern encrypted DNS protocols such as [DNSCrypt v2](https://dnscrypt.info/protocol), [DNS-over-HTTPS](https://www.rfc-editor.org/rfc/rfc8484.txt) and [Anonymized DNSCrypt](https://github.com/DNSCrypt/dnscrypt-protocol/blob/master/ANONYMIZED-DNSCRYPT.txt).
 
-## Getting Started
+* **[dnscrypt-proxy documentation](https://dnscrypt.info/doc) ← Start here**
+* [DNSCrypt project home page](https://dnscrypt.info/)
+* [Discussions](https://github.com/DNSCrypt/dnscrypt-proxy/discussions)
+* [DNS-over-HTTPS and DNSCrypt resolvers](https://dnscrypt.info/public-servers)
+* [Server and client implementations](https://dnscrypt.info/implementations)
+* [DNS stamps](https://dnscrypt.info/stamps)
+* [FAQ](https://dnscrypt.info/faq)
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+## [Download the latest release](https://github.com/dnscrypt/dnscrypt-proxy/releases/latest)
 
-### Prerequisites
+Available as source code and pre-built binaries for most operating systems and architectures (see below).
 
-- git
+## Features
 
-  Install [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) commandline tool.
+* DNS traffic encryption and authentication. Supports DNS-over-HTTPS (DoH) using TLS 1.3, DNSCrypt and Anonymized DNS
+* Client IP addresses can be hidden using Tor, SOCKS proxies or Anonymized DNS relays
+* DNS query monitoring, with separate log files for regular and suspicious queries
+* Filtering: block ads, malware, and other unwanted content. Compatible with all DNS services
+* Time-based filtering, with a flexible weekly schedule
+* Transparent redirection of specific domains to specific resolvers
+* DNS caching, to reduce latency and improve privacy
+* Local IPv6 blocking to reduce latency on IPv4-only networks
+* Load balancing: pick a set of resolvers, dnscrypt-proxy will automatically measure and keep track of their speed, and balance the traffic across the fastest available ones.
+* Cloaking: like a `HOSTS` file on steroids, that can return preconfigured addresses for specific names, or resolve and return the IP address of other names. This can be used for local development as well as to enforce safe search results on Google, Yahoo, DuckDuckGo and Bing
+* Automatic background updates of resolvers lists
+* Can force outgoing connections to use TCP
+* Compatible with DNSSEC
+* Includes a local DoH server in order to support ECHO (ESNI)
 
-- docker
+## Pre-built binaries
 
-  Install [docker](https://docs.docker.com/engine/installation). The community edition (docker-ce) will work. In Linux make sure you grant permissions to the current user to use docker by adding current user to docker group, `sudo usermod -aG docker $USER`. Once you update the users group, exit from the current terminal and open a new one to make effect.
+Up-to-date, pre-built binaries are available for:
 
-- docker-compose
+* Android/arm
+* Android/arm64
+* Android/x86
+* Android/x86_64
+* Dragonfly BSD
+* FreeBSD/arm
+* FreeBSD/x86
+* FreeBSD/x86_64
+* Linux/arm
+* Linux/arm64
+* Linux/mips
+* Linux/mipsle
+* Linux/mips64
+* Linux/mips64le
+* Linux/x86
+* Linux/x86_64
+* MacOS X
+* NetBSD/x86
+* NetBSD/x86_64
+* OpenBSD/x86
+* OpenBSD/x86_64
+* Windows
+* Windows 64 bit
 
-  Install [docker-compose](https://docs.docker.com/compose/install)
+How to use these files, as well as how to verify their signatures, are documented in the [installation instructions](https://github.com/dnscrypt/dnscrypt-proxy/wiki/installation).
 
-**Note**: Make sure you can run `git`, `docker ps`, `docker-compose` without any issue and without sudo command.
+## Contributors
 
-### Building
+### Code Contributors
 
-```
-$ git clone https://github.com/dappnode/DNP_BIND
-```
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/dnscrypt/dnscrypt-proxy/graphs/contributors"><img src="https://opencollective.com/dnscrypt/contributors.svg?width=890&button=false" /></a>
 
-```
-$ docker-compose build
-or
-$ docker build --rm -f build/Dockerfile -t bind.dnp.dappnode.eth:dev build
-```
+### Financial Contributors
 
-## Running
+Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/dnscrypt/contribute)]
 
-### Start
+#### Individuals
 
-```
-$ docker-compose up -d
-```
+<a href="https://opencollective.com/dnscrypt"><img src="https://opencollective.com/dnscrypt/individuals.svg?width=890"></a>
 
-### Stop
+#### Organizations
 
-```
-$ docker-compose  down
-```
+Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/dnscrypt/contribute)]
 
-### Status
-
-```
-$ docker-compose  ps
-```
-
-### Logs
-
-```
-$ docker-compose  logs -f
-```
-
-### Testing
-
-The mission of this repo by itself is only to check the functionality provided by the bind service.
-
-For this, once it has been started, you can run the below command to check that it resolves the expected address:
-
-```
-eduadiez~ $ dig @172.33.1.2 bind.dappnode.eth
-
-; <<>> DiG 9.9.4-RedHat-9.9.4-61.el7_5.1 <<>> @172.33.1.2 bind.dappnode.eth
-; (1 server found)
-;; global options: +cmd
-;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 8657
-;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
-
-;; OPT PSEUDOSECTION:
-; EDNS: version: 0, flags:; udp: 4096
-;; QUESTION SECTION:
-;bind.dappnode.eth.		IN	A
-
-;; ANSWER SECTION:
-bind.dappnode.eth.	38400	IN	A	172.33.1.3
-
-;; Query time: 2 msec
-;; SERVER: 172.33.1.2#53(172.33.1.2)
-;; WHEN: Sun Oct 07 11:39:18 CEST 2018
-;; MSG SIZE  rcvd: 62
-
-```
-
-## Generating a tar.xz image
-
-[xz](https://tukaani.org/xz/) is required
-
-```
-$ docker save bind.dnp.dappnode.eth:dev | xz -e9vT0 > bind.dnp.dappnode.eth_x.y.z.tar.xz
-```
-
-You can download the latest tar.xz version from here [releases](https://github.com/dappnode/DNP_BIND/releases).
-
-### Loading a Docker image
-
-```
-$docker load -i bind.dnp.dappnode.eth_x.y.z.tar.xz
-```
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://github.com/dappnode) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/dappnode/DNP_BIND/tags).
-
-## Authors
-
-- **Eduardo Antuña Díez** - _Initial work_ - [eduadiez](https://github.com/eduadiez)
-
-See also the list of [contributors](https://github.com/dappnode/DNP_BIND/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details
-
-## References
-
-[git](https://git-scm.com/)
-
-[docker](https://www.docker.com/)
-
-[docker-compose](https://docs.docker.com/compose/)
-
-[BIND](https://www.isc.org/downloads/bind/)
+<a href="https://opencollective.com/dnscrypt/organization/0/website"><img src="https://opencollective.com/dnscrypt/organization/0/avatar.svg"></a>
+<a href="https://opencollective.com/dnscrypt/organization/1/website"><img src="https://opencollective.com/dnscrypt/organization/1/avatar.svg"></a>
+<a href="https://opencollective.com/dnscrypt/organization/2/website"><img src="https://opencollective.com/dnscrypt/organization/2/avatar.svg"></a>
+<a href="https://opencollective.com/dnscrypt/organization/3/website"><img src="https://opencollective.com/dnscrypt/organization/3/avatar.svg"></a>
+<a href="https://opencollective.com/dnscrypt/organization/4/website"><img src="https://opencollective.com/dnscrypt/organization/4/avatar.svg"></a>
+<a href="https://opencollective.com/dnscrypt/organization/5/website"><img src="https://opencollective.com/dnscrypt/organization/5/avatar.svg"></a>
+<a href="https://opencollective.com/dnscrypt/organization/6/website"><img src="https://opencollective.com/dnscrypt/organization/6/avatar.svg"></a>
+<a href="https://opencollective.com/dnscrypt/organization/7/website"><img src="https://opencollective.com/dnscrypt/organization/7/avatar.svg"></a>
+<a href="https://opencollective.com/dnscrypt/organization/8/website"><img src="https://opencollective.com/dnscrypt/organization/8/avatar.svg"></a>
+<a href="https://opencollective.com/dnscrypt/organization/9/website"><img src="https://opencollective.com/dnscrypt/organization/9/avatar.svg"></a>

@@ -1,0 +1,156 @@
+# github.com/BurntSushi/toml v0.3.1
+## explicit
+github.com/BurntSushi/toml
+# github.com/VividCortex/ewma v1.2.0
+## explicit
+github.com/VividCortex/ewma
+# github.com/coreos/go-systemd v0.0.0-20191104093116-d3cd4ed1dbcf
+## explicit
+github.com/coreos/go-systemd/activation
+github.com/coreos/go-systemd/daemon
+# github.com/davecgh/go-spew v1.1.1
+github.com/davecgh/go-spew/spew
+# github.com/dchest/safefile v0.0.0-20151022103144-855e8d98f185
+## explicit
+github.com/dchest/safefile
+# github.com/golang/protobuf v1.4.1
+github.com/golang/protobuf/proto
+github.com/golang/protobuf/ptypes
+github.com/golang/protobuf/ptypes/any
+github.com/golang/protobuf/ptypes/duration
+github.com/golang/protobuf/ptypes/timestamp
+# github.com/hashicorp/go-immutable-radix v1.3.0
+## explicit
+github.com/hashicorp/go-immutable-radix
+# github.com/hashicorp/go-syslog v1.0.0
+github.com/hashicorp/go-syslog
+# github.com/hashicorp/golang-lru v0.5.4
+## explicit
+github.com/hashicorp/golang-lru
+github.com/hashicorp/golang-lru/simplelru
+# github.com/hectane/go-acl v0.0.0-20190604041725-da78bae5fc95
+## explicit
+github.com/hectane/go-acl
+github.com/hectane/go-acl/api
+# github.com/jedisct1/dlog v0.0.0-20210101122416-354ffe815216
+## explicit
+github.com/jedisct1/dlog
+# github.com/jedisct1/go-clocksmith v0.0.0-20210101121932-da382b963868
+## explicit
+github.com/jedisct1/go-clocksmith
+# github.com/jedisct1/go-dnsstamps v0.0.0-20210414164033-fdb47fe0c84c
+## explicit
+github.com/jedisct1/go-dnsstamps
+# github.com/jedisct1/go-hpke-compact v0.0.0-20210329192501-7ceabaabca65
+## explicit
+github.com/jedisct1/go-hpke-compact
+# github.com/jedisct1/go-minisign v0.0.0-20210414164026-819d7e2534ac
+## explicit
+github.com/jedisct1/go-minisign
+# github.com/jedisct1/xsecretbox v0.0.0-20210330110434-7cb86b57caf0
+## explicit
+github.com/jedisct1/xsecretbox
+# github.com/k-sone/critbitgo v1.4.0
+## explicit
+github.com/k-sone/critbitgo
+# github.com/kardianos/service v1.2.0
+## explicit
+github.com/kardianos/service
+# github.com/miekg/dns v1.1.41
+## explicit
+github.com/miekg/dns
+# github.com/pkg/errors v0.9.1
+github.com/pkg/errors
+# github.com/pmezard/go-difflib v1.0.0
+github.com/pmezard/go-difflib/difflib
+# github.com/powerman/check v1.3.1
+## explicit
+github.com/powerman/check
+# github.com/smartystreets/goconvey v1.6.4
+github.com/smartystreets/goconvey/convey/gotest
+github.com/smartystreets/goconvey/convey/reporting
+# golang.org/x/crypto v0.0.0-20210421170649-83a5a9bb288b
+## explicit
+golang.org/x/crypto/blake2b
+golang.org/x/crypto/chacha20
+golang.org/x/crypto/chacha20poly1305
+golang.org/x/crypto/curve25519
+golang.org/x/crypto/ed25519
+golang.org/x/crypto/ed25519/internal/edwards25519
+golang.org/x/crypto/hkdf
+golang.org/x/crypto/internal/subtle
+golang.org/x/crypto/nacl/box
+golang.org/x/crypto/nacl/secretbox
+golang.org/x/crypto/poly1305
+golang.org/x/crypto/salsa20/salsa
+# golang.org/x/net v0.0.0-20210423184538-5f58ad60dda6
+## explicit
+golang.org/x/net/bpf
+golang.org/x/net/http/httpguts
+golang.org/x/net/http2
+golang.org/x/net/http2/hpack
+golang.org/x/net/idna
+golang.org/x/net/internal/iana
+golang.org/x/net/internal/socket
+golang.org/x/net/internal/socks
+golang.org/x/net/ipv4
+golang.org/x/net/ipv6
+golang.org/x/net/proxy
+# golang.org/x/sys v0.0.0-20210426230700-d19ff857e887
+## explicit
+golang.org/x/sys/cpu
+golang.org/x/sys/internal/unsafeheader
+golang.org/x/sys/unix
+golang.org/x/sys/windows
+golang.org/x/sys/windows/registry
+golang.org/x/sys/windows/svc
+golang.org/x/sys/windows/svc/eventlog
+golang.org/x/sys/windows/svc/mgr
+# golang.org/x/text v0.3.6
+golang.org/x/text/secure/bidirule
+golang.org/x/text/transform
+golang.org/x/text/unicode/bidi
+golang.org/x/text/unicode/norm
+# google.golang.org/genproto v0.0.0-20200526211855-cb27e3aa2013
+google.golang.org/genproto/googleapis/rpc/status
+# google.golang.org/grpc v1.27.0
+google.golang.org/grpc/codes
+google.golang.org/grpc/connectivity
+google.golang.org/grpc/grpclog
+google.golang.org/grpc/internal
+google.golang.org/grpc/status
+# google.golang.org/protobuf v1.25.0
+google.golang.org/protobuf/encoding/prototext
+google.golang.org/protobuf/encoding/protowire
+google.golang.org/protobuf/internal/descfmt
+google.golang.org/protobuf/internal/descopts
+google.golang.org/protobuf/internal/detrand
+google.golang.org/protobuf/internal/encoding/defval
+google.golang.org/protobuf/internal/encoding/messageset
+google.golang.org/protobuf/internal/encoding/tag
+google.golang.org/protobuf/internal/encoding/text
+google.golang.org/protobuf/internal/errors
+google.golang.org/protobuf/internal/fieldsort
+google.golang.org/protobuf/internal/filedesc
+google.golang.org/protobuf/internal/filetype
+google.golang.org/protobuf/internal/flags
+google.golang.org/protobuf/internal/genid
+google.golang.org/protobuf/internal/impl
+google.golang.org/protobuf/internal/mapsort
+google.golang.org/protobuf/internal/pragma
+google.golang.org/protobuf/internal/set
+google.golang.org/protobuf/internal/strs
+google.golang.org/protobuf/internal/version
+google.golang.org/protobuf/proto
+google.golang.org/protobuf/reflect/protoreflect
+google.golang.org/protobuf/reflect/protoregistry
+google.golang.org/protobuf/runtime/protoiface
+google.golang.org/protobuf/runtime/protoimpl
+google.golang.org/protobuf/types/known/anypb
+google.golang.org/protobuf/types/known/durationpb
+google.golang.org/protobuf/types/known/timestamppb
+# gopkg.in/natefinch/lumberjack.v2 v2.0.0
+## explicit
+gopkg.in/natefinch/lumberjack.v2
+# gopkg.in/yaml.v2 v2.4.0
+## explicit

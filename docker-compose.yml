@@ -1,8 +1,8 @@
 version: "3.5"
 services:
   bind.dnp.dappnode.eth:
-    build: ./build
-    image: "bind.dnp.dappnode.eth:0.2.6"
+    build: .
+    image: "bind.dappnode.eth:0.3.0"
     container_name: DAppNodeCore-bind.dnp.dappnode.eth
     restart: always
     networks:
@@ -14,5 +14,4 @@ services:
       driver: journald
 networks:
   dncore_network:
-    name: dncore_network
     external: true
