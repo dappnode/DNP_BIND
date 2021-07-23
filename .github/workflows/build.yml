@@ -1,0 +1,7 @@
+name: Build
+on: pull_request
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: AvadoDServer/ci-build-action@main
