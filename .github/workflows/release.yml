@@ -1,0 +1,12 @@
+name: Release
+on:
+  push:
+    branches:
+      - master
+jobs:
+  release:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: AvadoDServer/ci-release-action@main
+        with:
+          rpcToken: ${{ secrets.RPC_TOKEN }}
