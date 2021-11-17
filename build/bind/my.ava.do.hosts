@@ -1,6 +1,6 @@
 $ORIGIN .
 $TTL 38400		; 10 hours 40 minutes
-avado		IN SOA	avado. administrator.avado. (
+my.ava.do		IN SOA	my.ava.do. administrator.my.ava.do. (
 				1515764902 ; serial
 				10800      ; refresh (3 hours)
 				3600       ; retry (1 hour)
@@ -8,11 +8,8 @@ avado		IN SOA	avado. administrator.avado. (
 				38400      ; minimum (10 hours 40 minutes)
 				)
 			NS	172.33.1.2
-$ORIGIN avado.
-admin			A	172.33.1.9
-my			A	172.33.1.9
-ethchain		A	172.33.1.6
-fullnode		A	172.33.1.6
-ipfs			A	172.33.1.5
+$ORIGIN my.ava.do.
+ A	172.33.1.9
+ipfs A	172.33.1.5
 dappmanager	A	172.33.1.7
 wamp A 172.33.1.8
