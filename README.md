@@ -1,1 +1,2 @@
-# BIND core package
+AVADO DNS resolver package
+
