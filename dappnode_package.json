@@ -9,6 +9,7 @@
     "path": "bind.dnp.dappnode.eth_10.0.11.tar.xz",
     "hash": "/ipfs/QmRRGv2R6fX6tLh3B9qEwdsyDkMgnL3jfxifcnngmRbw5s",
     "size": 19205508,
+
     "volumes": [
       "binddnpdappnodeeth_data:/etc/bind"
     ],
