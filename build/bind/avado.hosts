@@ -9,10 +9,8 @@ avado		IN SOA	avado. administrator.avado. (
 				)
 			NS	172.33.1.2
 $ORIGIN avado.
-admin			A	172.33.1.9
 my			A	172.33.1.9
-ethchain		A	172.33.1.6
-fullnode		A	172.33.1.6
 ipfs			A	172.33.1.5
 dappmanager	A	172.33.1.7
 wamp A 172.33.1.8
+remoteconnect A 172.33.1.20
