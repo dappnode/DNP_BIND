@@ -7,8 +7,8 @@
   "type": "dncore",
   "image": {
     "path": "bind.dnp.dappnode.eth_10.0.12.tar.xz",
-    "hash": "/ipfs/QmdY45TWH1xm9J85PZrmEEH8gksLonZJ75HaWap5ZhX1Ku",
-    "size": 19205384,
+    "hash": "/ipfs/QmTaVqRPB2U5yFfE8o4JDquhyrg9Q9DKgZ4c9xnLa38kGB",
+    "size": 19285172,
     "volumes": [
       "binddnpdappnodeeth_data:/etc/bind"
     ],
