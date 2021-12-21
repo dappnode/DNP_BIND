@@ -1,27 +1,11 @@
 #!/bin/sh
 
-##################
-# v0.2.0 migration
-##################
-if [ ! -f /etc/bind/dappnode.hosts ]; then
-    cp /config/dappnode.hosts /etc/bind/dappnode.hosts
-fi
-if [ ! -f /etc/bind/avado.hosts ]; then
-    cp /config/avado.hosts /etc/bind/avado.hosts
-fi
+# Clean up old files
+rm -f /etc/bind/*.hosts
+rm -f /etc/bind/*.jnl
+ 
+echo "copying hosts/config"
+cp /config/*.hosts /etc/bind/
+cp /config/named.conf /etc/bind/named.conf
 
-if [ ! -f /etc/bind/avadopackage.com.hosts ]; then
-    cp /config/avadopackage.com.hosts /etc/bind/avadopackage.com.hosts
-fi
-
-#if [ ! -f /etc/bind/my.ava.do.hosts ]; then
-    echo "copying my.ava.do hosts"
-    cp /config/my.ava.do.hosts /etc/bind/my.ava.do.hosts
-#fi
-
-#diff /etc/bind/named.conf /config/named.conf
-#if [ $? -ne 0 ]; then
-    cp /config/named.conf /etc/bind/named.conf
-#fi
-
-supervisord
+supervisord -c /supervisord.conf
