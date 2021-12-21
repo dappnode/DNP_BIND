@@ -14,13 +14,14 @@ if [ ! -f /etc/bind/avadopackage.com.hosts ]; then
     cp /config/avadopackage.com.hosts /etc/bind/avadopackage.com.hosts
 fi
 
-if [ ! -f /etc/bind/my.ava.do.hosts ]; then
+#if [ ! -f /etc/bind/my.ava.do.hosts ]; then
+    echo "copying my.ava.do hosts"
     cp /config/my.ava.do.hosts /etc/bind/my.ava.do.hosts
-fi
+#fi
 
-diff /etc/bind/named.conf /config/named.conf
-if [ $? -ne 0 ]; then
+#diff /etc/bind/named.conf /config/named.conf
+#if [ $? -ne 0 ]; then
     cp /config/named.conf /etc/bind/named.conf
-fi
+#fi
 
 supervisord
