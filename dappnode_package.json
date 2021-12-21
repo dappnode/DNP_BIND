@@ -7,8 +7,8 @@
   "type": "dncore",
   "image": {
     "path": "bind.dnp.dappnode.eth_10.0.14.tar.xz",
-    "hash": "/ipfs/QmNou52ccwn8uU38RkbFAEREXqsmoqik9eYacTAF54A7wa",
-    "size": 19196848,
+    "hash": "/ipfs/Qmc1fRWF1wd56QvwLeaVx5LuzodpG1bjQLPWU5i9kKx5Ko",
+    "size": 19221620,
     "volumes": [
       "binddnpdappnodeeth_data:/etc/bind"
     ],
@@ -24,5 +24,5 @@
     "DNS"
   ],
   "license": "GPL-3.0",
-  "builddate": "2021-12-21T22:37:33.472Z"
+  "builddate": "2021-12-21T23:09:29.075Z"
 }
