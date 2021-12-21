@@ -8,8 +8,8 @@ my.ava.do		IN SOA	my.ava.do. administrator.my.ava.do. (
 				38400      ; minimum (10 hours 40 minutes)
 				)
 			NS	172.33.1.2
+		  A	172.33.1.9
 $ORIGIN my.ava.do.
- A	172.33.1.9
 ipfs A	172.33.1.5
 dappmanager	A	172.33.1.7
 wamp A 172.33.1.8
