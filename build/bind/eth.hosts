@@ -7,18 +7,18 @@ eth			IN SOA	eth. admin.eth. (
 				604800     ; expire (1 week)
 				38400      ; minimum (10 hours 40 minutes)
 				)
-			    NS	172.33.1.2.eth.
+			    NS	172.30.0.2.eth.
 $ORIGIN eth.
-*				A	172.33.1.7
-dappnode		A	172.33.1.7
+*				A	172.30.0.7
+dappnode		A	172.30.0.7
 $ORIGIN dappnode.eth.
-*			    A	172.33.1.7
+*			    A	172.30.0.7
 $ORIGIN dnp.dappnode.eth.
-*			    A	172.33.1.7
-my.admin		A	172.33.1.7
-my.bind			A	172.33.1.2
-my.dappmanager	A	172.33.1.7
-my.ipfs			A	172.33.1.5
-my.vpn			A	172.33.1.4
-my.wamp			A	172.33.1.8
-my.ethchain		A	172.33.1.6
+*			    A	172.30.0.7
+my.admin		A	172.30.0.7
+my.bind			A	172.30.0.2
+my.dappmanager	A	172.30.0.7
+my.ipfs			A	172.30.0.5
+my.vpn			A	172.30.0.4
+my.wamp			A	172.30.0.8
+my.ethchain		A	172.30.0.6

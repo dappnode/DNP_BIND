@@ -5,7 +5,7 @@ services:
     build: ./build-test
     image: test
     container_name: Test
-    dns: 172.33.1.2
+    dns: 172.30.0.2
     networks:
       - dncore_network
 

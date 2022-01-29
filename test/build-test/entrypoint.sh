@@ -14,11 +14,11 @@ check_domain()
 }
 
 # my. domains
-check_domain my.ipfs.dnp.dappnode.eth 172.33.1.5
+check_domain my.ipfs.dnp.dappnode.eth 172.30.0.5
 # .dappnode domains
-check_domain ipfs.dappnode 172.33.1.5
+check_domain ipfs.dappnode 172.30.0.5
 # other .eth domains
-check_domain ipfs.dappnode.eth 172.33.1.7
-check_domain ipfs.eth 172.33.1.7
+check_domain ipfs.dappnode.eth 172.30.0.7
+check_domain ipfs.eth 172.30.0.7
 
 

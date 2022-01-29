@@ -7,6 +7,6 @@ test			IN SOA	test. administrator.test. (
 				604800     ; expire (1 week)
 				38400      ; minimum (10 hours 40 minutes)
 				)
-			NS	172.33.1.2
+			NS	172.30.0.2
 $ORIGIN test.
-*			    A	172.33.1.7
+*			    A	172.30.0.7

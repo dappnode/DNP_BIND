@@ -75,9 +75,9 @@ The mission of this repo by itself is only to check the functionality provided b
 For this, once it has been started, you can run the below command to check that it resolves the expected address:
 
 ```
-eduadiez~ $ dig @172.33.1.2 bind.dappnode.eth
+eduadiez~ $ dig @172.30.0.2 bind.dappnode.eth
 
-; <<>> DiG 9.9.4-RedHat-9.9.4-61.el7_5.1 <<>> @172.33.1.2 bind.dappnode.eth
+; <<>> DiG 9.9.4-RedHat-9.9.4-61.el7_5.1 <<>> @172.30.0.2 bind.dappnode.eth
 ; (1 server found)
 ;; global options: +cmd
 ;; Got answer:
@@ -90,10 +90,10 @@ eduadiez~ $ dig @172.33.1.2 bind.dappnode.eth
 ;bind.dappnode.eth.		IN	A
 
 ;; ANSWER SECTION:
-bind.dappnode.eth.	38400	IN	A	172.33.1.3
+bind.dappnode.eth.	38400	IN	A	172.30.0.3
 
 ;; Query time: 2 msec
-;; SERVER: 172.33.1.2#53(172.33.1.2)
+;; SERVER: 172.30.0.2#53(172.30.0.2)
 ;; WHEN: Sun Oct 07 11:39:18 CEST 2018
 ;; MSG SIZE  rcvd: 62
 
