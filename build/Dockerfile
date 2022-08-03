@@ -1,6 +1,7 @@
 FROM alpine
 
-RUN apk --no-cache add bind dnscrypt-proxy supervisor && \
+#RUN apk --no-cache add bind dnscrypt-proxy supervisor && \
+RUN apk --no-cache add bind supervisor && \
     mkdir -p /var/bind/log
 
 # COPY bind /etc/bind/
