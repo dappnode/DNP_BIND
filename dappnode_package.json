@@ -1,7 +1,7 @@
 {
   "name": "bind.dnp.dappnode.eth",
   "title": "DNS resolver",
-  "version": "10.0.15",
+  "version": "10.0.16",
   "description": "AVADO package responsible for providing DNS resolution",
   "avatar": "/ipfs/Qma99egVdY8uHfiH7A9mSbBMHhVQijmrM8oH67KVCxxDke",
   "type": "dncore",
