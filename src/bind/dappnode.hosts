@@ -12,5 +12,3 @@ $ORIGIN dappnode.
 admin			A	172.33.1.7
 my				A	172.33.1.7
 ipfs			A	172.33.1.5
-$ORIGIN ipfs.dappnode.
-*			A	172.33.1.5
