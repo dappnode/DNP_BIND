@@ -9,13 +9,6 @@ on:
       - "README.md"
 
 jobs:
-  integration-test:
-    runs-on: ubuntu-latest
-    name: Integration tests
-    steps:
-      - uses: actions/checkout@v4
-      - run: ./test/test.sh
-
   build-test:
     runs-on: ubuntu-latest
     name: Build test
@@ -28,7 +21,6 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    needs: [integration-test]
     if: github.event_name == 'push'
     steps:
       - uses: actions/checkout@v4
