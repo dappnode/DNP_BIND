@@ -1,23 +1,28 @@
 {
   "name": "bind.dnp.dappnode.eth",
-  "version": "0.2.6",
-  "description": "Dappnode package responsible for providing DNS resolution",
-  "type": "dncore",
+  "version": "0.3.0",
+  "upstreamVersion": "2.1.5",
+  "shortDescription": "DNS/ENS forwarder for Dappnode",
+  "description": "Dappnode Core Package responsible for forwarding the DNS and ENS requests to the proper resolver",
   "architectures": ["linux/amd64", "linux/arm64"],
+  "type": "dncore",
   "author": "DAppNode Association <admin@dappnode.io> (https://github.com/dappnode)",
-  "contributors": [
-    "Eduardo Antuña <eduadiez@gmail.com> (https://github.com/eduadiez)"
-  ],
-  "keywords": ["DAppNodeCore", "bind", "DNS"],
+  "categories": ["Developer tools"],
   "links": {
-    "homepage": "https://github.com/dappnode/DNP_BIND#readme"
+    "homepage": "https://dappnode.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dappnode/DNP_BIND"
+    "url": "git+https://github.com/dappnode/DNP_BIND"
   },
   "bugs": {
     "url": "https://github.com/dappnode/DNP_BIND/issues"
   },
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "globalEnvs": [
+    {
+      "envs": ["DOMAIN", "INTERNAL_IP"],
+      "services": ["bind.dnp.dappnode.eth"]
+    }
+  ]
 }

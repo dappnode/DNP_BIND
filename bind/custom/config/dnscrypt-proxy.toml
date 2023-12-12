@@ -33,7 +33,7 @@ server_names = ['scaleway-fr', 'commons-host', 'dnscrypt.me', 'cloudflare']
 ## List of local addresses and ports to listen to. Can be IPv4 and/or IPv6.
 ## Note: When using systemd socket activation, choose an empty set (i.e. [] ).
 
-listen_addresses = ['127.0.0.1:5353']
+listen_addresses = ['0.0.0.0:53']
 
 
 ## Maximum number of simultaneous client connections to accept
@@ -100,7 +100,7 @@ force_tcp = false
 
 ## How long a DNS query will wait for a response, in milliseconds
 
-timeout = 2500
+timeout = 10000
 
 
 ## Keepalive for HTTP (HTTPS, HTTP/2) queries, in seconds
@@ -161,7 +161,19 @@ cert_refresh_delay = 240
 # tls_cipher_suite = [52392, 49199]
 
 
-## Bootstrap resolvers
+## Fallback resolver
+## This is a normal, non-encrypted DNS resolver, that will be only used
+## for one-shot queries when retrieving the initial resolvers list, and
+## only if the system DNS configuration doesn't work.
+## No user application queries will ever be leaked through this resolver,
+## and it will not be used after IP addresses of resolvers URLs have been found.
+## It will never be used if lists have already been cached, and if stamps
+## don't include host names without IP addresses.
+## It will not be used if the configured system DNS works.
+## A resolver supporting DNSSEC is recommended. This may become mandatory.
+##
+## People in China may need to use 114.114.114.114:53 here.
+## Other popular options include 8.8.8.8 and 1.1.1.1.
 
 bootstrap_resolvers = ['1.1.1.1:53']
 
@@ -223,7 +235,7 @@ block_ipv6 = false
 ## example.com 9.9.9.9
 ## example.net 9.9.9.9,8.8.8.8,1.1.1.1
 
-# forwarding_rules = 'forwarding-rules.txt'
+forwarding_rules = 'forwarding-rules.txt'
 
 
 
@@ -239,7 +251,7 @@ block_ipv6 = false
 ## example.com     10.1.1.1
 ## www.google.com  forcesafesearch.google.com
 
-# cloaking_rules = 'cloaking-rules.txt'
+cloaking_rules = 'cloaking-rules.txt'
 
 
 
