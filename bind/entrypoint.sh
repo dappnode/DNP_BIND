@@ -20,7 +20,7 @@ fetch_env() {
     done
 
     echo "Error: Failed to fetch $env_var_name after $retries attempts."
-    exit 1
+    return 1
 }
 
 # Start DNS server in background right away
@@ -34,14 +34,30 @@ if [ -n "${_DAPPNODE_GLOBAL_DOMAIN}" ]; then
     domain=${_DAPPNODE_GLOBAL_DOMAIN}
     echo "Using existing domain: $domain"
 else
-    domain=$(fetch_env "DOMAIN")
+    fetched_domain=$(fetch_env "DOMAIN")
+
+    if [ $? -eq 0 ]; then
+        domain=$fetched_domain
+    else
+        echo "Failed to fetch DOMAIN"
+        kill $pid
+        exit 1
+    fi
 fi
 
 if [ -n "${_DAPPNODE_GLOBAL_INTERNAL_IP}" ]; then
     internal_ip=${_DAPPNODE_GLOBAL_INTERNAL_IP}
     echo "Using existing domain: $domain"
 else
-    internal_ip=$(fetch_env "INTERNAL_IP")
+    fetched_internal_ip=$(fetch_env "INTERNAL_IP")
+
+    if [ $? -eq 0 ]; then
+        internal_ip=$fetched_internal_ip
+    else
+        echo "Failed to fetch INTERNAL_IP"
+        kill $pid
+        exit 1
+    fi
 fi
 
 echo "$domain $internal_ip" >cloaking-rules.txt
