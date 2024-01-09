@@ -9,7 +9,7 @@ services:
     networks:
       dncore_network:
         aliases:
-          - "bind.dappnode"
+          - bind.dappnode
     logging:
       driver: journald
     image: "bind.dnp.dappnode.eth:0.3.0"
