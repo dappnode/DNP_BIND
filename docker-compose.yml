@@ -8,7 +8,6 @@ services:
     restart: always
     networks:
       dncore_network:
-        ipv4_address: 172.33.1.2
         aliases:
           - bind.dappnode
     logging:
