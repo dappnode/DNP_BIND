@@ -8,6 +8,7 @@ services:
     restart: always
     networks:
       dncore_network:
+        ipv4_address: 172.33.1.2
         aliases:
           - bind.dappnode
     logging:
@@ -15,5 +16,4 @@ services:
     image: "bind.dnp.dappnode.eth:0.3.0"
 networks:
   dncore_network:
-    ipv4_address: 172.33.1.2
     external: true
