@@ -1,6 +1,7 @@
 version: "3.5"
 services:
   bind.dnp.dappnode.eth:
+    container_name: DAppNodeCore-bind.dnp.dappnode.eth
     build:
       context: bind
       args:
