@@ -1,49 +1,44 @@
 #!/bin/sh
 
-# Function to fetch environment variables
-fetch_env() {
-    local env_var_name=$1
-    local env_var_value=""
+# Start DNS server in background right away
+/app/dnscrypt-proxy &
+
+pid=$!
+
+# Initialize domain and internal_ip variables
+domain=""
+internal_ip=""
+
+# Fetch domain and internal_ip from Dappmanager API
+fetch_envs() {
     local wait_time=10 # Wait time between retries
 
     while true; do
-        echo "Fetching $env_var_name"
-        env_var_value=$(curl -s "my.dappnode/global-envs/$env_var_name")
+        response=$(curl -s http://dappmanager-api/global-envs) # Replace with actual API endpoint if different
 
-        if [ -n "$env_var_value" ]; then
-            echo "$env_var_value"
-            return 0
+        if [ $? -eq 0 ]; then
+            domain=$(echo $response | jq -r '.DOMAIN')
+            internal_ip=$(echo $response | jq -r '.INTERNAL_IP')
+
+            if [ -n "$domain" ] && [ -n "$internal_ip" ]; then
+                break
+            fi
+        else
+            echo "Failed to fetch data. Retrying in $wait_time seconds..."
         fi
 
         sleep $wait_time
     done
 }
 
-# Start DNS server in background right away
-/app/dnscrypt-proxy &
-
-# Initialize domain and internal_ip variables
-domain=""
-internal_ip=""
-
-pid=$!
-
-# Fetch required environment variables
-
-if [ -n "${_DAPPNODE_GLOBAL_DOMAIN}" ]; then
+# Check if both domain and internal_ip are available as global environment variables
+if [ -n "${_DAPPNODE_GLOBAL_DOMAIN}" ] && [ -n "${_DAPPNODE_GLOBAL_INTERNAL_IP}" ]; then
     domain=${_DAPPNODE_GLOBAL_DOMAIN}
-    echo "Using existing domain: $domain"
-else
-    fetched_domain=$(fetch_env "DOMAIN" | tail -n 1)
-    domain=$fetched_domain
-fi
-
-if [ -n "${_DAPPNODE_GLOBAL_INTERNAL_IP}" ]; then
     internal_ip=${_DAPPNODE_GLOBAL_INTERNAL_IP}
-    echo "Using existing internal IP: $internal_ip"
+
+    echo "Using domain($domain) and internal ip ($internal_ip) from global envs."
 else
-    fetched_internal_ip=$(fetch_env "INTERNAL_IP" | tail -n 1)
-    internal_ip=$fetched_internal_ip
+    fetch_envs
 fi
 
 # Only write to cloaking-rules.txt if both domain and internal_ip are available
