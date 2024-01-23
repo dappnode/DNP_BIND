@@ -14,7 +14,7 @@ fetch_envs() {
     local wait_time=10 # Wait time between retries
 
     while true; do
-        response=$(curl -s http://dappmanager.dappnode/global-envs) # Replace with actual API endpoint if different
+        response=$(curl -s http://dappmanager.dappnode/global-envs)
 
         if [ $? -eq 0 ]; then
             domain=$(echo $response | jq -r '.DOMAIN')
