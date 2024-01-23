@@ -14,7 +14,7 @@ fetch_envs() {
     local wait_time=10 # Wait time between retries
 
     while true; do
-        response=$(curl -s http://dappmanager-api/global-envs) # Replace with actual API endpoint if different
+        response=$(curl -s http://dappmanager.dappnode/global-envs) # Replace with actual API endpoint if different
 
         if [ $? -eq 0 ]; then
             domain=$(echo $response | jq -r '.DOMAIN')
@@ -24,7 +24,7 @@ fetch_envs() {
                 break
             fi
         else
-            echo "Failed to fetch data. Retrying in $wait_time seconds..."
+            echo "[ERROR] Failed to fetch data. Retrying in $wait_time seconds..."
         fi
 
         sleep $wait_time
@@ -36,8 +36,9 @@ if [ -n "${_DAPPNODE_GLOBAL_DOMAIN}" ] && [ -n "${_DAPPNODE_GLOBAL_INTERNAL_IP}"
     domain=${_DAPPNODE_GLOBAL_DOMAIN}
     internal_ip=${_DAPPNODE_GLOBAL_INTERNAL_IP}
 
-    echo "Using domain($domain) and internal ip ($internal_ip) from global envs."
+    echo "[INFO] Using domain($domain) and internal ip ($internal_ip) from global envs."
 else
+    echo "[INFO] Fetching domain and internal ip from Dappmanager API..."
     fetch_envs
 fi
 
@@ -50,5 +51,6 @@ if [ -n "$domain" ] && [ -n "$internal_ip" ]; then
 
     /app/dnscrypt-proxy
 else
+    touch cloaking-rules.txt
     echo "[ERROR] Missing domain or internal IP. Cloaking rules not updated. Dyndns domain will not be forwarded to internal IP."
 fi
