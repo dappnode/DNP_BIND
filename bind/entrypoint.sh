@@ -38,7 +38,7 @@ if [ -n "${_DAPPNODE_GLOBAL_DOMAIN}" ]; then
     domain=${_DAPPNODE_GLOBAL_DOMAIN}
     echo "Using existing domain: $domain"
 else
-    fetched_domain=$(fetch_env "DOMAIN")
+    fetched_domain=$(fetch_env "DOMAIN" | tail -n 1)
 
     if [ $? -eq 0 ]; then
         domain=$fetched_domain
@@ -49,9 +49,9 @@ fi
 
 if [ -n "${_DAPPNODE_GLOBAL_INTERNAL_IP}" ]; then
     internal_ip=${_DAPPNODE_GLOBAL_INTERNAL_IP}
-    echo "Using existing domain: $domain"
+    echo "Using existing internal IP: $internal_ip"
 else
-    fetched_internal_ip=$(fetch_env "INTERNAL_IP")
+    fetched_internal_ip=$(fetch_env "INTERNAL_IP" | tail -n 1)
 
     if [ $? -eq 0 ]; then
         internal_ip=$fetched_internal_ip
