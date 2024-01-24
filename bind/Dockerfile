@@ -24,7 +24,7 @@ FROM alpine:3.18
 
 WORKDIR /app
 
-RUN apk add --no-cache curl
+RUN apk add --no-cache curl jq
 
 COPY --from=builder /usr/local/bin/dnscrypt-proxy /app/dnscrypt-proxy
 
