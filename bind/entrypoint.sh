@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # Start DNS server in background right away
+echo '*.ipfs.ipfs.dappnode ipfs.dappnode' > cloaking-rules.txt
 /app/dnscrypt-proxy &
 
 pid=$!
@@ -44,7 +45,9 @@ fi
 
 # Only write to cloaking-rules.txt if both domain and internal_ip are available
 if [ -n "$domain" ] && [ -n "$internal_ip" ]; then
-    echo "$domain $internal_ip" >cloaking-rules.txt
+    # rewrite cloaking-rules.txt
+    echo "$domain $internal_ip" > cloaking-rules.txt
+    echo '*.ipfs.ipfs.dappnode ipfs.dappnode' >> cloaking-rules.txt
 
     kill $pid
     wait $pid
