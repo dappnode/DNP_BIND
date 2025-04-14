@@ -42,6 +42,7 @@ type Config struct {
 	Timeout                  int            `toml:"timeout"`
 	KeepAlive                int            `toml:"keepalive"`
 	Proxy                    string         `toml:"proxy"`
+	CertRefreshConcurrency   int            `toml:"cert_refresh_concurrency"`
 	CertRefreshDelay         int            `toml:"cert_refresh_delay"`
 	CertIgnoreTimestamp      bool           `toml:"cert_ignore_timestamp"`
 	EphemeralKeys            bool           `toml:"dnscrypt_ephemeral_keys"`
@@ -117,6 +118,7 @@ func newConfig() Config {
 		LocalDoH:                 LocalDoHConfig{Path: "/dns-query"},
 		Timeout:                  5000,
 		KeepAlive:                5,
+		CertRefreshConcurrency:   10,
 		CertRefreshDelay:         240,
 		HTTP3:                    false,
 		CertIgnoreTimestamp:      false,
@@ -261,7 +263,7 @@ type ServerSummary struct {
 	IPv6        bool     `json:"ipv6"`
 	Addrs       []string `json:"addrs,omitempty"`
 	Ports       []int    `json:"ports"`
-	DNSSEC      bool     `json:"dnssec"`
+	DNSSEC      *bool    `json:"dnssec,omitempty"`
 	NoLog       bool     `json:"nolog"`
 	NoFilter    bool     `json:"nofilter"`
 	Description string   `json:"description,omitempty"`
@@ -292,6 +294,7 @@ type ConfigFlags struct {
 	Resolve                 *string
 	List                    *bool
 	ListAll                 *bool
+	IncludeRelays           *bool
 	JSONOutput              *bool
 	Check                   *bool
 	ConfigFile              *string
@@ -325,6 +328,7 @@ func ConfigLoad(proxy *Proxy, flags *ConfigFlags) error {
 			*flags.ConfigFile,
 		)
 	}
+	WarnIfMaybeWritableByOtherUsers(foundConfigFile)
 	config := newConfig()
 	md, err := toml.DecodeFile(foundConfigFile, &config)
 	if err != nil {
@@ -438,6 +442,7 @@ func ConfigLoad(proxy *Proxy, flags *ConfigFlags) error {
 	if config.ForceTCP {
 		proxy.mainProto = "tcp"
 	}
+	proxy.certRefreshConcurrency = Max(1, config.CertRefreshConcurrency)
 	proxy.certRefreshDelay = time.Duration(Max(60, config.CertRefreshDelay)) * time.Minute
 	proxy.certRefreshDelayAfterFailure = time.Duration(10 * time.Second)
 	proxy.certIgnoreTimestamp = config.CertIgnoreTimestamp
@@ -741,11 +746,11 @@ func ConfigLoad(proxy *Proxy, flags *ConfigFlags) error {
 			return err
 		}
 		if len(proxy.registeredServers) == 0 {
-			return errors.New("No servers configured")
+			return errors.New("None of the servers listed in the server_names list was found in the configured sources.")
 		}
 	}
 	if *flags.List || *flags.ListAll {
-		if err := config.printRegisteredServers(proxy, *flags.JSONOutput); err != nil {
+		if err := config.printRegisteredServers(proxy, *flags.JSONOutput, *flags.IncludeRelays); err != nil {
 			return err
 		}
 		os.Exit(0)
@@ -781,8 +786,47 @@ func ConfigLoad(proxy *Proxy, flags *ConfigFlags) error {
 	return nil
 }
 
-func (config *Config) printRegisteredServers(proxy *Proxy, jsonOutput bool) error {
+func (config *Config) printRegisteredServers(proxy *Proxy, jsonOutput bool, includeRelays bool) error {
 	var summary []ServerSummary
+	if includeRelays {
+		for _, registeredRelay := range proxy.registeredRelays {
+			addrStr, port := registeredRelay.stamp.ServerAddrStr, stamps.DefaultPort
+			var hostAddr string
+			hostAddr, port = ExtractHostAndPort(addrStr, port)
+			addrs := make([]string, 0)
+			if (registeredRelay.stamp.Proto == stamps.StampProtoTypeDoH || registeredRelay.stamp.Proto == stamps.StampProtoTypeODoHTarget) &&
+				len(registeredRelay.stamp.ProviderName) > 0 {
+				providerName := registeredRelay.stamp.ProviderName
+				var host string
+				host, port = ExtractHostAndPort(providerName, port)
+				addrs = append(addrs, host)
+			}
+			if len(addrStr) > 0 {
+				addrs = append(addrs, hostAddr)
+			}
+			nolog := true
+			nofilter := true
+			if registeredRelay.stamp.Proto == stamps.StampProtoTypeODoHRelay {
+				nolog = registeredRelay.stamp.Props&stamps.ServerInformalPropertyNoLog != 0
+			}
+			serverSummary := ServerSummary{
+				Name:        registeredRelay.name,
+				Proto:       registeredRelay.stamp.Proto.String(),
+				IPv6:        strings.HasPrefix(addrStr, "["),
+				Ports:       []int{port},
+				Addrs:       addrs,
+				NoLog:       nolog,
+				NoFilter:    nofilter,
+				Description: registeredRelay.description,
+				Stamp:       registeredRelay.stamp.String(),
+			}
+			if jsonOutput {
+				summary = append(summary, serverSummary)
+			} else {
+				fmt.Println(serverSummary.Name)
+			}
+		}
+	}
 	for _, registeredServer := range proxy.registeredServers {
 		addrStr, port := registeredServer.stamp.ServerAddrStr, stamps.DefaultPort
 		var hostAddr string
@@ -798,13 +842,14 @@ func (config *Config) printRegisteredServers(proxy *Proxy, jsonOutput bool) erro
 		if len(addrStr) > 0 {
 			addrs = append(addrs, hostAddr)
 		}
+		dnssec := registeredServer.stamp.Props&stamps.ServerInformalPropertyDNSSEC != 0
 		serverSummary := ServerSummary{
 			Name:        registeredServer.name,
 			Proto:       registeredServer.stamp.Proto.String(),
 			IPv6:        strings.HasPrefix(addrStr, "["),
 			Ports:       []int{port},
 			Addrs:       addrs,
-			DNSSEC:      registeredServer.stamp.Props&stamps.ServerInformalPropertyDNSSEC != 0,
+			DNSSEC:      &dnssec,
 			NoLog:       registeredServer.stamp.Props&stamps.ServerInformalPropertyNoLog != 0,
 			NoFilter:    registeredServer.stamp.Props&stamps.ServerInformalPropertyNoFilter != 0,
 			Description: registeredServer.description,
@@ -898,7 +943,7 @@ func (config *Config) loadSource(proxy *Proxy, cfgSourceName string, cfgSource *
 	if cfgSource.RefreshDelay <= 0 {
 		cfgSource.RefreshDelay = 72
 	}
-	cfgSource.RefreshDelay = Min(168, Max(24, cfgSource.RefreshDelay))
+	cfgSource.RefreshDelay = Min(169, Max(25, cfgSource.RefreshDelay))
 	source, err := NewSource(
 		cfgSourceName,
 		proxy.xTransport,

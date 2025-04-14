@@ -1,5 +1,17 @@
 #!/bin/sh
 
+
+if [ -n "$PUBLIC_RESOLVERS_OVERRIDE" ]; then
+  # Convert comma-separated server names into a TOML array format
+  SERVER_LIST=$(echo "$PUBLIC_RESOLVERS_OVERRIDE" | sed 's/, */, "/g')
+  
+  # Wrap each name in quotes and produce something like: "adguard-dns", "blahdns"
+  SERVER_LIST="\"${SERVER_LIST}\""
+
+  # Replace the existing server_names line in the TOML file
+  sed -i "s#^server_names = .*#server_names = [ $SERVER_LIST ]#" dnscrypt-proxy.toml
+fi
+
 # Start DNS server in background right away
 /app/dnscrypt-proxy &
 

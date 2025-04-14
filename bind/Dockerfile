@@ -1,4 +1,4 @@
-FROM golang:1.21.5-alpine3.18 AS builder
+FROM golang:1.24.1-alpine3.21 AS builder
 
 ARG UPSTREAM_VERSION
 
@@ -20,7 +20,7 @@ RUN cd ${SRC_DIR} && \
     CGO_ENABLED=0 go build -mod vendor -ldflags="-s -w" -o /usr/local/bin/dnscrypt-proxy && \
     chmod +x /usr/local/bin/dnscrypt-proxy
 
-FROM alpine:3.18
+FROM alpine:3.21
 
 WORKDIR /app
 

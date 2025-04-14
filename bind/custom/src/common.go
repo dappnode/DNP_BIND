@@ -173,3 +173,5 @@ func ReadTextFile(filename string) (string, error) {
 	bin = bytes.TrimPrefix(bin, []byte{0xef, 0xbb, 0xbf})
 	return string(bin), nil
 }
+
+func isDigit(b byte) bool { return b >= '0' && b <= '9' }

@@ -5,12 +5,14 @@ services:
     build:
       context: bind
       args:
-        UPSTREAM_VERSION: 2.1.5
+        UPSTREAM_VERSION: 2.1.8
     restart: always
     networks:
       dncore_network:
         aliases:
           - bind.dappnode
+    environment:
+      - PUBLIC_RESOLVERS_OVERRIDE
     logging:
       driver: journald
     image: "bind.dnp.dappnode.eth:0.3.0"
