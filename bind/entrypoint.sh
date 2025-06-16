@@ -45,6 +45,7 @@ fi
 # Only write to cloaking-rules.txt if both domain and internal_ip are available
 if [ -n "$domain" ] && [ -n "$internal_ip" ]; then
     echo "$domain $internal_ip" >cloaking-rules.txt
+    echo "pwa.${domain} https.dappnode.private" >>cloaking-rules.txt # Add PWA domain to cloaking rules
 
     kill $pid
     wait $pid
