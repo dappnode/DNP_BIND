@@ -1,2 +1,3 @@
 dappnode 127.0.0.11
+dappnode.private 127.0.0.11
 eth 127.0.0.11 my.dappnode
