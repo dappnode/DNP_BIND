@@ -55,14 +55,15 @@ else
 fi
 
 # Only write to cloaking-rules.txt if both domain and internal_ip are available
+# Initialize cloaking-rules.txt with pwa
+echo "pwa.${domain} https.dappnode.private" >cloaking-rules.txt # Add PWA domain to cloaking rules
 if [ -n "$domain" ] && [ -n "$internal_ip" ]; then
-    echo "$domain $internal_ip" >cloaking-rules.txt
+    echo "$domain $internal_ip" >>cloaking-rules.txt
 
     kill $pid
     wait $pid
 
     /app/dnscrypt-proxy
 else
-    touch cloaking-rules.txt
     echo "[ERROR] Missing domain or internal IP. Cloaking rules not updated. Dyndns domain will not be forwarded to internal IP."
 fi

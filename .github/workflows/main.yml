@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - run: docker-compose build
+      - run: docker compose build
 
   release:
     name: Release
