@@ -1,6 +1,6 @@
 {
   "name": "bind.dnp.dappnode.eth",
-  "version": "0.3.0",
+  "version": "0.2.11",
   "upstreamVersion": "2.1.5",
   "shortDescription": "DNS/ENS forwarder for Dappnode",
   "description": "Dappnode Core Package responsible for forwarding the DNS and ENS requests to the proper resolver",
