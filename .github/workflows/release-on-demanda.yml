@@ -1,0 +1,21 @@
+name: "Main"
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Release
+    runs-on: ipfs-dev-gateway
+    if: github.event_name == 'workflow_dispatch'
+    steps:
+      - uses: actions/checkout@v6
+      - name: Setup node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "20.x"
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Publish
+        run: npx @dappnode/dappnodesdk publish patch --github_release --timeout 1h --content_provider=http://10.200.200.7:5001 --eth_provider=https://web3.dappnode.net
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
