@@ -1,0 +1,178 @@
+diff --git a/dnscrypt-proxy/config.go b/dnscrypt-proxy/config.go
+index 6e6e81c..0631671 100644
+--- a/dnscrypt-proxy/config.go
++++ b/dnscrypt-proxy/config.go
+@@ -59,6 +59,7 @@ type Config struct {
+ 	CacheMaxTTL              uint32                      `toml:"cache_max_ttl"`
+ 	RejectTTL                uint32                      `toml:"reject_ttl"`
+ 	CloakTTL                 uint32                      `toml:"cloak_ttl"`
++	ForwardFallbackTTL       uint32                      `toml:"forward_fallback_ttl"`
+ 	QueryLog                 QueryLogConfig              `toml:"query_log"`
+ 	NxLog                    NxLogConfig                 `toml:"nx_log"`
+ 	BlockName                BlockNameConfig             `toml:"blocked_names"`
+@@ -144,6 +145,7 @@ func newConfig() Config {
+ 		CacheMaxTTL:              86400,
+ 		RejectTTL:                600,
+ 		CloakTTL:                 600,
++		ForwardFallbackTTL:       600,
+ 		SourceRequireNoLog:       true,
+ 		SourceRequireNoFilter:    true,
+ 		SourceIPv4:               true,
+diff --git a/dnscrypt-proxy/config_loader.go b/dnscrypt-proxy/config_loader.go
+index 9e609a6..ed8e6b1 100644
+--- a/dnscrypt-proxy/config_loader.go
++++ b/dnscrypt-proxy/config_loader.go
+@@ -270,6 +270,7 @@ func configurePlugins(proxy *Proxy, config *Config) {
+ 	proxy.cacheMaxTTL = config.CacheMaxTTL
+ 	proxy.rejectTTL = config.RejectTTL
+ 	proxy.cloakTTL = config.CloakTTL
++	proxy.forwardFallbackTTL = config.ForwardFallbackTTL
+ 	proxy.cloakedPTR = config.CloakedPTR
+ 
+ 	// Configure query meta
+diff --git a/dnscrypt-proxy/plugin_forward.go b/dnscrypt-proxy/plugin_forward.go
+index 8f3bed9..679831f 100644
+--- a/dnscrypt-proxy/plugin_forward.go
++++ b/dnscrypt-proxy/plugin_forward.go
+@@ -6,14 +6,17 @@
+ 	"fmt"
+ 	"math/rand"
+ 	"net"
++	"net/netip"
+ 	"os"
+ 	"path/filepath"
+ 	"strings"
+ 	"sync"
+ 	"sync/atomic"
+ 	"time"
++	"unicode"
+ 
+ 	"codeberg.org/miekg/dns"
++	"codeberg.org/miekg/dns/rdata"
+ 	"github.com/jedisct1/dlog"
+ 	"github.com/lifenjoiner/dhcpdns"
+ 	netproxy "golang.org/x/net/proxy"
+@@ -39,10 +42,12 @@ type PluginForwardEntry struct {
+ 	domain   string
+ 	sequence []SearchSequenceItem
+ 	viaProxy bool
++	fallback string
+ }
+ 
+ type PluginForward struct {
+ 	forwardMap         []PluginForwardEntry
++	fallbackTTL        uint32
+ 	bootstrapResolvers []string
+ 	dhcpdns            []*dhcpdns.Detector
+ 	proxyDialer        netproxy.Dialer
+@@ -65,6 +70,7 @@ func (plugin *PluginForward) Description() string {
+ 
+ func (plugin *PluginForward) Init(proxy *Proxy) error {
+ 	plugin.configFile = proxy.forwardFile
++	plugin.fallbackTTL = proxy.forwardFallbackTTL
+ 	dlog.Noticef("Loading the set of forwarding rules from [%s]", plugin.configFile)
+ 
+ 	plugin.forceTCP = proxy.forceTCP
+@@ -118,6 +124,15 @@ func (plugin *PluginForward) parseForwardFile(lines string) (bool, []PluginForwa
+ 			continue
+ 		}
+ 		domain, serversStr, ok := StringTwoFields(line)
++		// Dappnode rules optionally include a fallback IP address or CNAME.
++		fallback := ""
++		if pos := strings.LastIndexFunc(serversStr, unicode.IsSpace); pos >= 0 {
++			servers := strings.TrimSpace(serversStr[:pos])
++			// Spaces after commas and after $PROXY: belong to the resolver list.
++			if !strings.HasSuffix(servers, ",") && servers != "$PROXY:" {
++				serversStr, fallback = servers, strings.TrimSpace(serversStr[pos:])
++			}
++		}
+ 		domain = strings.TrimPrefix(domain, "*.")
+ 		if strings.Contains(domain, "*") {
+ 			ok = false
+@@ -233,6 +248,7 @@ func (plugin *PluginForward) parseForwardFile(lines string) (bool, []PluginForwa
+ 			domain:   domain,
+ 			sequence: sequence,
+ 			viaProxy: viaProxy,
++			fallback: fallback,
+ 		})
+ 	}
+ 
+@@ -319,6 +335,7 @@ func (plugin *PluginForward) Eval(pluginsState *PluginsState, msg *dns.Msg) erro
+ 	// Use read lock for thread-safe access to forwardMap
+ 	plugin.rwLock.RLock()
+ 	var sequence []SearchSequenceItem
++	var fallback string
+ 	viaProxy := false
+ 	for _, candidate := range plugin.forwardMap {
+ 		candidateLen := len(candidate.domain)
+@@ -329,6 +346,7 @@ func (plugin *PluginForward) Eval(pluginsState *PluginsState, msg *dns.Msg) erro
+ 			(candidateLen == qNameLen || (qName[qNameLen-candidateLen-1] == '.'))) ||
+ 			(candidate.domain == ".") {
+ 			sequence = candidate.sequence
++			fallback = candidate.fallback
+ 			viaProxy = candidate.viaProxy
+ 			break
+ 		}
+@@ -435,6 +453,9 @@ func (plugin *PluginForward) Eval(pluginsState *PluginsState, msg *dns.Msg) erro
+ 		if err := validateResponseQuestion(forwardMsg, respMsg); err != nil {
+ 			continue
+ 		}
++		if fallback != "" && respMsg.Rcode != dns.RcodeSuccess {
++			continue
++		}
+ 		if !respMsg.Security {
+ 			respMsg.AuthenticatedData = false
+ 		}
+@@ -450,9 +471,40 @@ func (plugin *PluginForward) Eval(pluginsState *PluginsState, msg *dns.Msg) erro
+ 		}
+ 		return nil
+ 	}
++	if fallback != "" {
++		pluginsState.synthResponse = plugin.fallbackResponse(msg, fallback)
++		pluginsState.action = PluginsActionSynth
++		pluginsState.returnCode = PluginsReturnCodeForward
++		return nil
++	}
+ 	return err
+ }
+ 
++// fallbackResponse preserves Dappnode's forwarding fallback when the local
++// resolver cannot answer, for example when resolving an unknown .eth name.
++func (plugin *PluginForward) fallbackResponse(msg *dns.Msg, target string) *dns.Msg {
++	response := EmptyResponseFromMessage(msg)
++	if len(msg.Question) == 0 {
++		return response
++	}
++	header := dns.Header{
++		Name: msg.Question[0].Header().Name, Class: dns.ClassINET, TTL: plugin.fallbackTTL,
++	}
++	if ip, err := netip.ParseAddr(target); err == nil {
++		qtype := dns.RRToType(msg.Question[0])
++		if ip.Is4() && qtype == dns.TypeA {
++			response.Answer = []dns.RR{&dns.A{Hdr: header, A: rdata.A{Addr: ip}}}
++		} else if ip.Is6() && qtype == dns.TypeAAAA {
++			response.Answer = []dns.RR{&dns.AAAA{Hdr: header, AAAA: rdata.AAAA{Addr: ip}}}
++		}
++	} else {
++		response.Answer = []dns.RR{&dns.CNAME{
++			Hdr: header, CNAME: rdata.CNAME{Target: strings.TrimSuffix(target, ".") + "."},
++		}}
++	}
++	return response
++}
++
+ // exchangeDirect sends a query to the selected upstream server, starting with
+ // the given protocol and retrying a truncated UDP response over TCP.
+ func (plugin *PluginForward) exchangeDirect(
+diff --git a/dnscrypt-proxy/proxy.go b/dnscrypt-proxy/proxy.go
+index 726886d..b74789e 100644
+--- a/dnscrypt-proxy/proxy.go
++++ b/dnscrypt-proxy/proxy.go
+@@ -91,6 +91,7 @@ type Proxy struct {
+ 	cacheMinTTL                   uint32
+ 	cacheNegMaxTTL                uint32
+ 	cloakTTL                      uint32
++	forwardFallbackTTL            uint32
+ 	cloakedPTR                    bool
+ 	cache                         bool
+ 	pluginBlockIPv6               bool

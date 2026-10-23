@@ -1,0 +1,2 @@
+# Unified patch context prefixes are followed by upstream Go indentation.
+bind/custom/patches/*.patch -whitespace
