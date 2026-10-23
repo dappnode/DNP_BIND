@@ -6,17 +6,23 @@ WORKDIR /app/dnscrypt-proxy
 
 ENV SRC_DIR=/app/dnscrypt-proxy/dnscrypt-proxy
 
-# Clone dnscrypt-proxy repo and checkout to the specified version
 # Refresh packages and the certificate bundle before fetching source.
 RUN apk upgrade --no-cache && \
     apk add --no-cache git 'ca-certificates>=20261020-r0' && \
-    git clone https://github.com/DNSCrypt/dnscrypt-proxy /app/dnscrypt-proxy && \
-    git checkout ${UPSTREAM_VERSION}
+    git clone --depth 1 --branch "${UPSTREAM_VERSION}" \
+        https://github.com/DNSCrypt/dnscrypt-proxy /app/dnscrypt-proxy
 
-RUN cp -R go.mod go.sum vendor 
+# Apply only the Dappnode changes, retaining upstream fixes in all other code.
+COPY custom/patches/dappnode-forwarding.patch /tmp/dappnode-forwarding.patch
+RUN git apply --check /tmp/dappnode-forwarding.patch && \
+    git apply /tmp/dappnode-forwarding.patch
 
-# Replace custom src files
-COPY custom/src/common.go custom/src/config.go custom/src/proxy.go custom/src/plugin_forward.go ./dnscrypt-proxy/
+COPY custom/src/*_test.go ./dnscrypt-proxy/
+
+# Upstream tests exercise unreadable files, so run them without root privileges.
+USER nobody
+RUN GOCACHE=/tmp/go-build go test -mod=vendor ./dnscrypt-proxy
+USER root
 
 RUN cd ${SRC_DIR} && \
     CGO_ENABLED=0 go build -mod vendor -ldflags="-s -w" -o /usr/local/bin/dnscrypt-proxy && \

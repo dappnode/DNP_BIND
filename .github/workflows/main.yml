@@ -16,19 +16,25 @@ jobs:
     if: github.event_name != 'push'
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-      - run: docker compose build
+        uses: actions/checkout@v7.0.1
+      - name: Setup node
+        uses: actions/setup-node@v7.1.0
+        with:
+          node-version: "26.12.1"
+      - name: Check publishing CLI
+        run: npx --yes "@dappnode/dappnodesdk@${DAPPNODE_SDK_VERSION}" publish --help
+      - run: docker compose build --pull --no-cache
 
   release:
     name: Release
     runs-on: ipfs-dev-gateway
     if: github.event_name == 'push'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
       - name: Setup node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7.1.0
         with:
-          node-version: "18.x"
+          node-version: "26.12.1"
       - name: Publish
         run: npx @dappnode/dappnodesdk publish patch --dappnode_team_preset
         env:
