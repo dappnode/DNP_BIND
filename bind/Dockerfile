@@ -1,4 +1,4 @@
-FROM golang:1.21.5-alpine3.18 AS builder
+FROM golang:1.27.3-alpine3.24 AS builder
 
 ARG UPSTREAM_VERSION
 
@@ -7,7 +7,9 @@ WORKDIR /app/dnscrypt-proxy
 ENV SRC_DIR=/app/dnscrypt-proxy/dnscrypt-proxy
 
 # Clone dnscrypt-proxy repo and checkout to the specified version
-RUN apk add --no-cache git && \
+# Refresh packages and the certificate bundle before fetching source.
+RUN apk upgrade --no-cache && \
+    apk add --no-cache git 'ca-certificates>=20261020-r0' && \
     git clone https://github.com/DNSCrypt/dnscrypt-proxy /app/dnscrypt-proxy && \
     git checkout ${UPSTREAM_VERSION}
 
@@ -20,11 +22,13 @@ RUN cd ${SRC_DIR} && \
     CGO_ENABLED=0 go build -mod vendor -ldflags="-s -w" -o /usr/local/bin/dnscrypt-proxy && \
     chmod +x /usr/local/bin/dnscrypt-proxy
 
-FROM alpine:3.18
+FROM alpine:3.24
 
 WORKDIR /app
 
-RUN apk add --no-cache curl jq
+# Go uses this trust store for DNS-over-HTTPS and resolver-list downloads.
+RUN apk upgrade --no-cache && \
+    apk add --no-cache 'ca-certificates>=20261020-r0' curl jq
 
 COPY --from=builder /usr/local/bin/dnscrypt-proxy /app/dnscrypt-proxy
 
@@ -32,4 +36,4 @@ COPY custom/config/dnscrypt-proxy.toml custom/config/forwarding-rules.txt /app/
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
-CMD ["/usr/local/bin/entrypoint.sh"] 
+CMD ["/usr/local/bin/entrypoint.sh"]
