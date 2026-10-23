@@ -30,6 +30,6 @@ jobs:
         with:
           node-version: "24.x"
       - name: Publish
-        run: npx @dappnode/dappnodesdk publish patch --dappnode_team_preset
+        run: npx @dappnode/dappnodesdk publish patch --content_provider=http://10.200.200.7:5001 --dappnode_team_preset
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
