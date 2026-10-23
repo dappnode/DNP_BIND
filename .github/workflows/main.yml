@@ -17,11 +17,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1
+      - name: Setup node
+        uses: actions/setup-node@v7.1.0
+        with:
+          node-version: "26.12.1"
+      - name: Check publishing CLI
+        run: npx --yes "@dappnode/dappnodesdk@${DAPPNODE_SDK_VERSION}" publish --help
       - run: docker compose build --pull --no-cache
 
   release:
     name: Release
-    runs-on: ubuntu-latest
+    runs-on: ipfs-dev-gateway
     if: github.event_name == 'push'
     steps:
       - uses: actions/checkout@v7.0.1
