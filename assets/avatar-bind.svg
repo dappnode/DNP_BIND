@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300" role="img" aria-labelledby="title desc">
+  <title id="title">Dappnode DNS routing globe</title>
+  <desc id="desc">A globe connected to two routing nodes, in Dappnode's cyan, blue, violet, magenta and orange palette. Transparent background.</desc>
+  <defs>
+    <linearGradient id="globe" x1="42" y1="45" x2="217" y2="253" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00D1E3"/>
+      <stop offset="0.3" stop-color="#008CFF"/>
+      <stop offset="0.58" stop-color="#5231C6"/>
+      <stop offset="0.8" stop-color="#DB00ED"/>
+      <stop offset="1" stop-color="#FF397F"/>
+    </linearGradient>
+    <linearGradient id="warm" x1="259" y1="43" x2="224" y2="130" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFB900"/>
+      <stop offset="0.44" stop-color="#FF9528"/>
+      <stop offset="1" stop-color="#FF18A6"/>
+    </linearGradient>
+    <linearGradient id="cool" x1="220" y1="176" x2="269" y2="256" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00CAE5"/>
+      <stop offset="0.5" stop-color="#008CFF"/>
+      <stop offset="1" stop-color="#6B12E7"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M225 104 C244 104 253 100 253 94" stroke="url(#warm)"/>
+    <path d="M225 196 C244 196 253 201 253 207" stroke="url(#cool)"/>
+    <g stroke="url(#globe)">
+      <circle cx="132" cy="150" r="103"/>
+      <ellipse cx="132" cy="150" rx="43" ry="103"/>
+      <path d="M39 106 Q132 154 225 106"/>
+      <path d="M39 194 Q132 146 225 194"/>
+    </g>
+  </g>
+  <circle cx="253" cy="68" r="26" fill="url(#warm)"/>
+  <circle cx="253" cy="233" r="26" fill="url(#cool)"/>
+</svg>
