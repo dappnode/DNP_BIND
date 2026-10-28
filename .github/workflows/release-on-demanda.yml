@@ -8,11 +8,11 @@ jobs:
     runs-on: ipfs-dev-gateway
     if: github.event_name == 'workflow_dispatch'
     steps:
-      - uses: actions/checkout@v7.0.1
+      - uses: actions/checkout@v7
       - name: Setup node
-        uses: actions/setup-node@v7.1.0
+        uses: actions/setup-node@v7
         with:
-          node-version: "26.12.1"
+          node-version: "24.x"
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
       - name: Publish
