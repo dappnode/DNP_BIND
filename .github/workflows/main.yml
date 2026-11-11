@@ -20,7 +20,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v7
         with:
-          node-version: "24.x"
+          node-version: "24.22.3"
       - name: Check publishing CLI
         run: npx --yes @dappnode/dappnodesdk publish --help
       - run: docker compose build --pull --no-cache
@@ -34,7 +34,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v7
         with:
-          node-version: "24.x"
+          node-version: "24.22.3"
       - name: Publish
         run: npx @dappnode/dappnodesdk publish patch --dappnode_team_preset
         env:
