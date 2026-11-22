@@ -5,7 +5,7 @@ services:
     build:
       context: bind
       args:
-        UPSTREAM_VERSION: 2.1.20
+        UPSTREAM_VERSION: 2.2.21
     restart: always
     networks:
       dncore_network:
