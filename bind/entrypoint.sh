@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# dnscrypt-proxy exits when its cloaking rules file is missing, so make sure
+# one exists until the domain and internal IP are known. A restarted container
+# keeps the rules from its previous run.
+touch cloaking-rules.txt
+
 # Start DNS server in background right away
 /app/dnscrypt-proxy &
 
