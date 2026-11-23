@@ -1,5 +1,5 @@
 diff --git a/dnscrypt-proxy/config.go b/dnscrypt-proxy/config.go
-index 6e6e81c..0631671 100644
+index 8a93530..6b25171 100644
 --- a/dnscrypt-proxy/config.go
 +++ b/dnscrypt-proxy/config.go
 @@ -59,6 +59,7 @@ type Config struct {
@@ -31,7 +31,7 @@ index 9e609a6..ed8e6b1 100644
  
  	// Configure query meta
 diff --git a/dnscrypt-proxy/plugin_forward.go b/dnscrypt-proxy/plugin_forward.go
-index 8f3bed9..679831f 100644
+index 842cb3e..90f303e 100644
 --- a/dnscrypt-proxy/plugin_forward.go
 +++ b/dnscrypt-proxy/plugin_forward.go
 @@ -6,14 +6,17 @@
@@ -114,7 +114,7 @@ index 8f3bed9..679831f 100644
  			break
  		}
 @@ -435,6 +453,9 @@ func (plugin *PluginForward) Eval(pluginsState *PluginsState, msg *dns.Msg) erro
- 		if err := validateResponseQuestion(forwardMsg, respMsg); err != nil {
+ 		if err = validateResponseQuestion(forwardMsg, respMsg); err != nil {
  			continue
  		}
 +		if fallback != "" && respMsg.Rcode != dns.RcodeSuccess {
@@ -165,10 +165,10 @@ index 8f3bed9..679831f 100644
  // the given protocol and retrying a truncated UDP response over TCP.
  func (plugin *PluginForward) exchangeDirect(
 diff --git a/dnscrypt-proxy/proxy.go b/dnscrypt-proxy/proxy.go
-index 726886d..b74789e 100644
+index e84d451..433c827 100644
 --- a/dnscrypt-proxy/proxy.go
 +++ b/dnscrypt-proxy/proxy.go
-@@ -91,6 +91,7 @@ type Proxy struct {
+@@ -94,6 +94,7 @@ type Proxy struct {
  	cacheMinTTL                   uint32
  	cacheNegMaxTTL                uint32
  	cloakTTL                      uint32
