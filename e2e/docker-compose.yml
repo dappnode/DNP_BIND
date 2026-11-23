@@ -1,0 +1,92 @@
+# End-to-end environment for the BIND package. Run it through ./run.sh, which
+# builds the package image and passes it in as BIND_IMAGE.
+#
+# Docker's embedded DNS (127.0.0.11) resolves the network aliases below, the
+# same way it resolves Dappnode package aliases on dncore_network.
+name: dnp-bind-e2e
+
+x-bind: &bind
+  image: ${BIND_IMAGE:?BIND_IMAGE must be set, use ./run.sh}
+
+services:
+  # Domain and internal IP provided as Dappnode global envs.
+  bind-envs:
+    <<: *bind
+    environment:
+      _DAPPNODE_GLOBAL_DOMAIN: e2e-envs.dyndns.dappnode.io
+      _DAPPNODE_GLOBAL_INTERNAL_IP: 192.168.77.10
+    networks:
+      e2e:
+        ipv4_address: ${E2E_NET:-172.29.53}.2
+
+  # No global envs, so the entrypoint polls the Dappmanager API.
+  bind-api:
+    <<: *bind
+    networks:
+      e2e:
+        ipv4_address: ${E2E_NET:-172.29.53}.3
+
+  client:
+    build:
+      dockerfile_inline: |
+        FROM alpine:3.24
+        RUN apk add --no-cache bind-tools
+    command: ["tail", "-f", "/dev/null"]
+    init: true
+    networks:
+      e2e:
+        ipv4_address: ${E2E_NET:-172.29.53}.10
+
+  # Mock Dappmanager serving GET /global-envs. Started late by run.sh to
+  # exercise the entrypoint's retry loop.
+  dappmanager:
+    image: busybox:1.37
+    command: ["httpd", "-f", "-vv", "-p", "80", "-h", "/www"]
+    volumes:
+      - ./dappmanager:/www:ro
+    networks:
+      e2e:
+        ipv4_address: ${E2E_NET:-172.29.53}.20
+        aliases:
+          - dappmanager.dappnode
+          - my.dappnode
+
+  # Target of the pwa.<domain> cloaking rule.
+  https:
+    image: busybox:1.37
+    command: ["tail", "-f", "/dev/null"]
+    init: true
+    networks:
+      e2e:
+        ipv4_address: ${E2E_NET:-172.29.53}.21
+        aliases:
+          - https.dappnode.private
+
+  # An ENS name that the local resolver can answer, so no fallback applies.
+  ens-site:
+    image: busybox:1.37
+    command: ["tail", "-f", "/dev/null"]
+    init: true
+    networks:
+      e2e:
+        ipv4_address: ${E2E_NET:-172.29.53}.22
+        aliases:
+          - e2e-known.eth
+
+  # A package reachable through the dappnode and dappnode.private rules.
+  package:
+    image: busybox:1.37
+    command: ["tail", "-f", "/dev/null"]
+    init: true
+    networks:
+      e2e:
+        ipv4_address: ${E2E_NET:-172.29.53}.23
+        aliases:
+          - e2e-pkg.dappnode
+          - e2e-pkg.dappnode.private
+
+networks:
+  e2e:
+    ipam:
+      config:
+        - subnet: ${E2E_NET:-172.29.53}.0/24
